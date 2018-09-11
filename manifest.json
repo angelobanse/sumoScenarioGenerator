@@ -1,0 +1,6 @@
+{
+    "name": "SUMO Scenario Generator",
+    "short_name": "SUMO SG",
+    "description": "Online Scenario Generator for SUMO traffic simulation.",
+    "theme_color": "#f8f9fa"
+  }

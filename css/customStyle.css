@@ -1,0 +1,19 @@
+.btn-outline-secondary {
+    color:#6c757d;
+    background-color:white;
+    background-image:none;
+    border-color:#6c757d
+}
+
+.map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.card-body{
+    width: 100%;
+}

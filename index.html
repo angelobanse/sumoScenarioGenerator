@@ -1,0 +1,467 @@
+<!-- Olaf Angelo Banse Bueno / 2018 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Online Scenario Generator for SUMO traffic simulation">
+    <title>SUMO Scenario Generator</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
+    
+    <!-- Bootstrap v4.1.3 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-grid.min.css" type="text/css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.min.css" type="text/css">
+
+    <!-- OpenLayers v5.2.0-->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/css/ol.css" type="text/css">
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/build/ol.js"></script>
+
+    <!-- Font Awesome (Icons) v5.3.1 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <link rel="stylesheet" href="css/customStyle.css" type="text/css"> 
+    <link rel="stylesheet" href="css/sideMenuStyle.css" type="text/css">
+
+    <!-- WEB BROWSER NAVIGATION BAR COLOR -->
+    <meta name="theme-color" content="#f8f9fa"> <!-- Chrome, Firefox OS and Opera -->
+    <meta name="msapplication-navbutton-color" content="#f8f9fa"> <!-- Windows Phone -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#f8f9fa"> <!-- iOS Safari -->
+
+    <!-- Progressive Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+</head>
+<body role="document">
+
+  <!-- NAVBAR -->
+      <nav class="navbar navbar-light navbar-expand-md bg-light justify-content-center">
+        
+        <a class="navbar-brand" href="http://www.dlr.de/en"><img src="images/dlr-logo.png" alt="DLR Logo" height=30px style="pointer-events: none;"></a>
+        <a class="navbar-brand" href="http://sumo.dlr.de"><img src="images/sumo-icon.png" alt="SUMO Logo" height=30px style="pointer-events: none;"></a>
+        <a class="navbar-brand">SUMO Scenario Generator</a> 
+        
+            <ul class="navbar-nav mx-auto text-center">
+                <li class="nav-item active">
+                    <button type="button" class="btn btn-primary" id="btn-start" tabindex="2" onclick="openSideMenu()">Start here <i class="fa fa-play-circle"></i></button>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
+                <li class="m-2 nav-item active">
+                    <a class="nav-link" href="#" data-toggle="modal" data-keyboard="true" data-target="#help" tabindex="3"><i class="fa fa-question-circle"></i> Help</span></a>
+                </li>
+                <li class="m-2 nav-item active">
+                    <a class="nav-link" href="#" data-toggle="modal" data-keyboard="true" data-target="#about" tabindex="4"><i class="fa fa-info-circle"></i> About</span></a>
+                </li>
+            </ul>
+      </nav>
+
+    
+
+    <div id="myposition"></div>
+
+    <div class="container-fluid">
+      <div id="map" class="map"></div>
+    </div>
+
+    
+  <!-- SEARCH BAR AND BUTTONS -->
+  <div class="container theme-showcase" role="main">
+    
+      <br>
+      <div id="mapsearch">
+        <form role="form" onsubmit="search();return false;">
+            <div class="input-group">
+          
+              <input type="text" class="form-control" style="border-color:#6c757d" id="searchstring" autocomplete="off" placeholder="Search" tabindex="1">
+            
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="searchbtn" data-toggle="tooltip" title="Search"><i class="fa fa-search"></i></button> 
+                <button class="btn btn-outline-secondary" type="button" id="btn-cur-location" data-toggle="tooltip" title="Use current location"><i class="fa fa-location-arrow"></i></button> 
+              </div>
+        
+        </div>
+          
+        </form>
+        
+        <div id="searchresults" style="background-color:rgba(255, 255, 255, 0.85); border-radius: 0px 0px 10px 10px"></div>
+      </div>
+
+    <!-- SIDE MENU -->
+      <div id="side-menu" class="side-nav">
+        <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
+        <br>
+        <div id="accordion">
+          
+          <!-- Selected Area -->
+          <div class="card">
+            <div class="card-header">
+              <a class="card-link">
+                <div id="generate-area-text"><i class="fa fa-vector-square"></i> Selected Area</div>
+              </a>
+            </div>
+            <div class="collapse show" >
+              <div id="collapseSelectedArea" class="card-body">
+                No area selected
+              </div>
+            </div>
+          </div>
+          <!-- Cars -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-car"></i> Cars
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseCars">
+                <button id="btn-enable-cars" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseCars" class="collapse" >
+              <div class="card-body">
+                <form class="form-inline">
+                    <label class="col-sm-6 col-form-label" for="carFactor">Through Traffic Factor</label>
+                    <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="carFactor"></div>
+                    <label class="col-sm-6 control-label" for="carCount">Vehicle Count</label>
+                    <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="carCount"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Trucks -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-truck"></i> Trucks
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseTrucks">
+                <button id="btn-enable-trucks" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseTrucks" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="truckFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="truckFactor"></div>
+                      <label class="col-sm-6 control-label" for="truckCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="truckCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Bus -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-bus"></i> Bus
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseBus">
+                <button id="btn-enable-bus" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseBus" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="busFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="busFactor"></div>
+                      <label class="col-sm-6 control-label" for="busCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="busCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Motorcycles -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-motorcycle"></i> Motorcycles
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseMotorcycles">
+                <button id="btn-enable-motorcycles" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseMotorcycles" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="motorcycleFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="motorcycleFactor"></div>
+                      <label class="col-sm-6 control-label" for="motorcycleCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="motorcycleCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Bicycles -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-bicycle"></i> Bicycles
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseBicycles">
+                <button id="btn-enable-bicycles" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseBicycles" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="bicycleFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="bicycleFactor"></div>
+                      <label class="col-sm-6 control-label" for="bicycleCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="bicycleCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Pedestrians -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-male"></i> Pedestrians
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapsePedestrians">
+                <button id="btn-enable-pedestrians" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapsePedestrians" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="pedestrianFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="pedestrianFactor"></div>
+                      <label class="col-sm-6 control-label" for="pedestrianCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="pedestrianCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Trams -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-train"></i> Trams
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseTrams">
+                <button id="btn-enable-trams" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseTrams" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="tramFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="tramFactor"></div>
+                      <label class="col-sm-6 control-label" for="tramCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="tramCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Urban trains -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-train"></i> Urban trains
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseUrbanTrains">
+                <button id="btn-enable-urbantrains" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseUrbanTrains" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="urbantrainFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="urbantrainFactor"></div>
+                      <label class="col-sm-6 control-label" for="urbantrainCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="urbantrainCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Trains -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-subway"></i> Trains
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseTrains">
+                <button id="btn-enable-trains" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseTrains" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="trainFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="trainFactor"></div>
+                      <label class="col-sm-6 control-label" for="trainCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="trainCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Ships -->
+          <div class="card">
+            <div class="card-header">
+                <i class="fa fa-ship"></i> Ships
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseShips">
+                <button id="btn-enable-ships" class="btn btn-secondary btn-sm float-right">Add</button>
+              </a>
+            </div>
+            <div id="collapseShips" class="collapse" >
+              <div class="card-body">
+                  <form class="form-inline">
+                      <label class="col-sm-6 col-form-label" for="shipFactor">Through Traffic Factor</label>
+                      <div class="col-sm-4"><input type="number" min="0.5" max="100" step="0.1" class="form-control" id="shipFactor"></div>
+                      <label class="col-sm-6 control-label" for="shipCount">Vehicle Count</label>
+                      <div class="col-sm-4"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="shipCount"></div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- Settings -->
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseSettings">
+                <i class="fa fa-cog"></i> Settings
+              </a>
+            </div>
+            <div id="collapseSettings" class="collapse" >
+              <div class="card-body">
+                  Soon
+              </div>
+            </div>
+          </div>
+
+          <button id="btn-generate" class="btn btn-success" style="margin:30px 10px 30px 10px;" disabled>Generate</button>
+
+        </div>
+        
+        
+      </div>
+
+      <script type="text/javascript">
+        var map = new ol.Map({
+          target: 'map',
+          layers: [
+            new ol.layer.Tile({
+              source: new ol.source.OSM()
+            })
+          ],
+          view: new ol.View({
+            center: ol.proj.fromLonLat([13.52822,52.4283]),
+            zoom: 16
+          })
+        });
+
+        var mousePosition = new ol.control.ScaleLine({
+        units: 'metric',
+        minWidth: 100
+      });
+      map.addControl(mousePosition);
+      </script>
+
+
+
+  </div>
+
+
+
+
+  <!-- HELP - Modal screen -->
+  <div class="modal fade" id="help" tabindex='-1'>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <!-- HELP Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Get Help using SUMO Scenario Generator</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- HELP body -->
+        <div class="modal-body">
+          
+        SUMO Scenario Generator is an fast and easy way to obtain a set of basic SUMO simulation files. Follow these steps to get going:
+
+        <div class="text-center">
+        <br>
+        Search <i class="fa fa-search"></i> for some place on the map or select your current location <i class="fa fa-location-arrow"></i>
+        <br><br>
+        Click on the <span class="badge badge-primary">Start here <i class="fa fa-play-circle"></i></span> button
+        <br><br>
+        <i class="fa fa-vector-square"></i> Select an area of the map by dragging and dropping the cursor
+        <br><br>
+        <span class="badge badge-secondary">Add</span> the vehicles you want and configure the <a href="#" data-toggle="popover" data-content="The Through Traffic Factor defines how many times it is more likely for an edge at the boundary of the simulation area being chosen compared to an edge entirely located inside the simulation area" data-placement="top" data-trigger="hover"><mark>Through Traffic Factor</mark></a> 
+        and the <a href="#" data-toggle="popover" data-content="The Vehicle Count parameter defines how many vehicles are generated per hour and lane-kilometer" data-placement="top" data-trigger="hover"><mark>Vehicle Count</mark></a> for each 
+        type of vehicle selected (or just leave the default values)
+        <br>
+        <br>
+        Click on the <span class="badge badge-success">Generate</span> button
+      </div>
+      
+        <br>
+        The following files should be contained by the ZIP folder: <code>info.txt</code>, <code>osm.net.xml</code>, <code>osm.view.xml</code>, 
+        <code>osm.sumocfg</code>, <code>osm.poly.xml</code> and all the <code>*.rou.xml</code> files depending on the vehicles selected.
+        
+        
+
+          
+        <br>
+        <br>
+        For further documentation please visit the <a href="http://sumo.dlr.de/wiki/Simulation_of_Urban_MObility_-_Wiki" target="_blank">SUMO wiki</a>.
+        </div>
+        <!-- HELP footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT - Modal screen -->
+  <div class="modal fade" id="about" tabindex='-1'>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- ABOUT Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">About SUMO Scenario Generator</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- ABOUT body -->
+        <div class="modal-body">
+          <p class="text-center"><img src="images/sumo-icon.png" alt="SUMO Logo" height=70px style="pointer-events: none;"></p>
+          <u>S</u>imulation of <u>U</u>rban <u>MO</u>bility (SUMO) Scenario Generator 
+          <br>
+          <kbd>version 0.1</kbd>
+          <br><br>
+          This web application generates and downloads the necessary files to start a basic road traffic simulation in SUMO.
+          <br><br>
+          <p class="small">Copyright © 2001-2018 DLR / Institute of Transportation Systems</p>
+          <a href="http://sumo.dlr.de">SUMO website</a>
+        </div>
+        <!-- ABOUT footer -->
+        <div class="modal-footer">
+            <a class="text-left" href="https://www.dlr.de/dlr/en/desktopdefault.aspx/tabid-10067/149_read-17/">Imprint</a>
+          <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+   </div>
+
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/scenario-generator.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+      $('[data-toggle="popover"]').popover(); 
+    });
+
+  function openSideMenu(){
+    document.getElementById("side-menu").style.width="350px";
+    document.getElementById("btn-start").style.display="none";
+    document.getElementById("searchstring").style.display="none";
+    document.getElementById("searchbtn").style.display="none";
+    document.getElementById("btn-cur-location").style.display="none";
+  }
+
+  function closeSideMenu(){
+    document.getElementById("side-menu").style.width="0";
+    document.getElementById("btn-start").style.display="block";
+    document.getElementById("searchstring").style.display="block";
+    document.getElementById("searchbtn").style.display="block";
+    document.getElementById("btn-cur-location").style.display="block";
+    $('#collapseSelectedArea').text('No area selected');
+  }
+
+  // close SideMenu when pressing <esc> key
+  $( document ).on( 'keydown', function ( e ) {
+    if ( e.keyCode === 27 ) {
+        closeSideMenu();
+    }
+});
+  </script>
+
+</body>
+</html>

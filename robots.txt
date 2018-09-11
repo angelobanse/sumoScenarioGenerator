@@ -1,0 +1,7 @@
+# robots.txt zu SUMO Scenario Generator
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: /images/
+Disallow: /bootstrap/
+Disallow: /js/
+Disallow: /css/
