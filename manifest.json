@@ -2,5 +2,17 @@
     "name": "SUMO Scenario Generator",
     "short_name": "SUMO SG",
     "description": "Online Scenario Generator for SUMO traffic simulation.",
-    "theme_color": "#f8f9fa"
+    "theme_color": "#f8f9fa",
+    "icons": [{
+      "src": "images/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "images/chrome-icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }],
+    "display": "standalone",
+    "background_color":"#f8f9fa"
   }
