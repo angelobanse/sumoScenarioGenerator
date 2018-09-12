@@ -54,8 +54,6 @@
             </ul>
       </nav>
 
-    
-
     <div id="myposition"></div>
 
     <div class="container-fluid">
@@ -94,8 +92,12 @@
             <div class="collapse show" >
               <div id="collapseSelectedArea" class="card-body">
                 No area selected
+                
               </div>
+              <div class="col-sm-12 text-center"> 
+              <button type="button" class="btn btn-outline-danger btn-sm" id="reset-selection" style="display: none">Reset selection</button>
             </div>
+          </div>
           </div>
           <!-- Cars -->
           <div class="card">
@@ -311,15 +313,8 @@
           <button id="btn-generate" class="btn btn-success" style="margin:30px 10px 30px 10px;" disabled>Generate</button>
 
         </div>
-        
-        
       </div>
-
-      
-
   </div>
-
-
 
   <!-- HELP - Modal screen -->
   <div class="modal fade" id="help" tabindex='-1'>
@@ -400,7 +395,7 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
-  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/build/ol.js"></script>
+  <script src="http://openlayers.org/en/v3.14.2/build/ol-debug.js" type="text/javascript"></script>
   <script type="text/javascript" src="js/scenario-generator.js"></script>
 
 </body>

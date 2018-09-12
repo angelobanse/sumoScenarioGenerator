@@ -11,7 +11,8 @@ function openSideMenu(){
   document.getElementById("btn-start").style.display="none";
   document.getElementById("searchstring").style.display="none";
   document.getElementById("searchbtn").style.display="none";
-  document.getElementById("btn-cur-location").style.display="none";
+	document.getElementById("btn-cur-location").style.display="none";
+	map.addInteraction(draw);
 }
 
 function closeSideMenu(){
@@ -20,7 +21,9 @@ function closeSideMenu(){
   document.getElementById("searchstring").style.display="block";
   document.getElementById("searchbtn").style.display="block";
   document.getElementById("btn-cur-location").style.display="block";
-  $('#collapseSelectedArea').text('No area selected');
+	$('#collapseSelectedArea').text('No area selected');
+	map.removeInteraction(draw);
+	vectorsource.clear();
 }
 
 // close SideMenu when pressing <esc> key
@@ -33,15 +36,26 @@ $( document ).on( 'keydown', function ( e ) {
 
 // ============================== MAP ==============================
 
+var vectorsource;
+var draw;
+
+vectorsource = new ol.source.Vector({wrapX: false});
+    var vector = new ol.layer.Vector({
+        source : vectorsource,
+        style: new ol.style.Style({
+          fill: new ol.style.Fill({ color: 'rgba(255, 255, 255, 0.5)' }),
+          stroke: new ol.style.Stroke({ color: '#30a64a', width: 4    }),
+          image: new ol.style.Circle({ radius: 7, fill: new ol.style.Fill({ color: '#ffcc33' }) })
+        })
+    });
+
+var raster = new ol.layer.Tile({source: new ol.source.OSM()});
+
 var map = new ol.Map({
 	target: 'map',
-	layers: [
-	  new ol.layer.Tile({
-		source: new ol.source.OSM()
-	  })
-	],
+	layers: [raster, vector],
 	view: new ol.View({
-	  center: ol.proj.fromLonLat([13.52822,52.4283]),
+	  center: ol.proj.transform([13.52822,52.4283], 'EPSG:4326', 'EPSG:3857'),
 	  zoom: 16
 	})
   });
@@ -49,8 +63,83 @@ var map = new ol.Map({
   var mousePosition = new ol.control.ScaleLine({
   units: 'metric',
   minWidth: 100
-});
+	});
 map.addControl(mousePosition);
+
+var geometryFunction = function(coordinates, geometry) {
+	if (!geometry) { geometry = new ol.geom.Polygon(null); }
+        
+	var start = coordinates[0];
+  var end = coordinates[1];
+  geometry.setCoordinates([
+  [start, [start[0], end[1]], end, [end[0], start[1]], start]
+  ]);
+        
+	return geometry;
+};
+
+draw = new ol.interaction.Draw({
+	source: vectorsource,
+  type: ('LineString'),
+  geometryFunction: geometryFunction,
+  maxPoints: 2
+});
+
+
+// Remove previous drawings when start drawing again
+draw.on('drawstart', function(e) { 
+	vectorsource.clear(); 
+});
+
+// Finish drawing
+draw.on('drawend', function(event) {
+	var coords = event.feature.getGeometry().getCoordinates();
+	var topLeft = ol.proj.transform(coords[0][0], 'EPSG:3857', 'EPSG:4326');
+	var topLeftLon = topLeft[0].toFixed(5);
+	var topLeftLat = topLeft[1].toFixed(5);
+	var botRight = ol.proj.transform(coords[0][2], 'EPSG:3857', 'EPSG:4326');
+	var botRightLon = botRight[0].toFixed(5);
+	var botRightLat = botRight[1].toFixed(5);
+	resetA();
+
+ 	$('#collapseSelectedArea').html('<i class="fas fa-arrows-alt-h"></i> Longitude<dd>' + topLeftLon  + ' - ' + botRightLon  + ' </dd>' + 
+				      '<i class="fas fa-arrows-alt-v"></i> Latitude<dd>' + topLeftLat  + ' - ' + botRightLat  +
+							'</dl>');
+
+	$('#btn-generate').prop('disabled', false);
+    });
+
+    // If the window is resized, we have to update the map accordingly
+    $(window).resize(function() { 
+	setTimeout( function() { map.updateSize();}, 200);
+    });
+
+
+		function resetA() {
+			document.getElementById("reset-selection").style.display="block";
+		}
+
+
+    // What happenes when we click on the GENERATE button in the side bar?
+    $('#btn-generate').on('click', function() {
+		closeSideMenu();
+		$('#help').modal('show');
+    });
+
+    // What happens when we click on the CANCEL button in the side bar?
+    $('#btn-close').on('click', function() {
+	closeSideMenu();
+	map.removeInteraction(draw);
+	vectorsource.clear();
+    });
+
+		// When clicking "Reset selection" button
+		$('#reset-selection').on('click', function() {
+			vectorsource.clear(); 
+			$('#collapseSelectedArea').text('No area selected');
+			document.getElementById("reset-selection").style.display="none";
+			$('#btn-generate').prop('disabled', true);
+				});
 
 
 
