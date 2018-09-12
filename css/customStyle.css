@@ -14,6 +14,40 @@
     z-index: -1;
 }
 
+/* SIDE MENU */
 .card-body{
     width: 100%;
+}
+
+.side-nav{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    right: 0;
+    background-color: #E2EFFF;
+    opacity: 1;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.side-nav a{
+    text-decoration: none;
+}
+
+.side-nav div{
+    margin: 5px 5px 5px 5px;
+    text-decoration: none;
+}
+
+.side-nav .btn-close{
+    position: absolute;
+    top: 0;
+    right: 22px;
+    font-size: 45px;
+    margin-left: 50px;
+
 }

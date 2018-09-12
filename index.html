@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Online Scenario Generator for SUMO traffic simulation">
+    <meta name="theme-color" content="#f8f9fa"> <!-- Chrome, Firefox OS and Opera -->
+    <meta name="msapplication-navbutton-color" content="#f8f9fa"> <!-- Windows Phone -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#f8f9fa"> <!-- iOS Safari -->
     <title>SUMO Scenario Generator</title>
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
+    <link rel="manifest" href="/manifest.json"> <!-- Progressive Web App Manifest -->
     
     <!-- Bootstrap v4.1.3 -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
@@ -17,23 +21,15 @@
 
     <!-- OpenLayers v5.2.0-->
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/css/ol.css" type="text/css">
-    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/build/ol.js"></script>
-
+    
     <!-- Font Awesome (Icons) v5.3.1 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
-    <link rel="stylesheet" href="css/customStyle.css" type="text/css"> 
-    <link rel="stylesheet" href="css/sideMenuStyle.css" type="text/css">
-
-    <!-- WEB BROWSER NAVIGATION BAR COLOR -->
-    <meta name="theme-color" content="#f8f9fa"> <!-- Chrome, Firefox OS and Opera -->
-    <meta name="msapplication-navbutton-color" content="#f8f9fa"> <!-- Windows Phone -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="#f8f9fa"> <!-- iOS Safari -->
-
-    <!-- Progressive Web App Manifest -->
-    <link rel="manifest" href="/manifest.json">
-
+    <!-- Custom CSS (customizing Bootstrap and other stuff) -->
+    <link rel="stylesheet" href="css/customStyle.css" type="text/css">
 </head>
+
+<!-- ============================== BODY ============================== -->
 <body role="document">
 
   <!-- NAVBAR -->
@@ -66,26 +62,19 @@
       <div id="map" class="map"></div>
     </div>
 
-    
-  <!-- SEARCH BAR AND BUTTONS -->
   <div class="container theme-showcase" role="main">
-    
+    <!-- SEARCH BAR AND BUTTONS -->
       <br>
       <div id="mapsearch">
         <form role="form" onsubmit="search();return false;">
-            <div class="input-group">
-          
+          <div class="input-group">
               <input type="text" class="form-control" style="border-color:#6c757d" id="searchstring" autocomplete="off" placeholder="Search" tabindex="1">
-            
-            <div class="input-group-append">
+              <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit" id="searchbtn" data-toggle="tooltip" title="Search"><i class="fa fa-search"></i></button> 
                 <button class="btn btn-outline-secondary" type="button" id="btn-cur-location" data-toggle="tooltip" title="Use current location"><i class="fa fa-location-arrow"></i></button> 
               </div>
-        
-        </div>
-          
+          </div>
         </form>
-        
         <div id="searchresults" style="background-color:rgba(255, 255, 255, 0.85); border-radius: 0px 0px 10px 10px"></div>
       </div>
 
@@ -319,31 +308,9 @@
         
       </div>
 
-      <script type="text/javascript">
-        var map = new ol.Map({
-          target: 'map',
-          layers: [
-            new ol.layer.Tile({
-              source: new ol.source.OSM()
-            })
-          ],
-          view: new ol.View({
-            center: ol.proj.fromLonLat([13.52822,52.4283]),
-            zoom: 16
-          })
-        });
-
-        var mousePosition = new ol.control.ScaleLine({
-        units: 'metric',
-        minWidth: 100
-      });
-      map.addControl(mousePosition);
-      </script>
-
-
+      
 
   </div>
-
 
 
 
@@ -426,38 +393,8 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/build/ol.js"></script>
   <script type="text/javascript" src="js/scenario-generator.js"></script>
-
-  <script>
-    $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip();
-      $('[data-toggle="popover"]').popover(); 
-    });
-
-  function openSideMenu(){
-    document.getElementById("side-menu").style.width="350px";
-    document.getElementById("btn-start").style.display="none";
-    document.getElementById("searchstring").style.display="none";
-    document.getElementById("searchbtn").style.display="none";
-    document.getElementById("btn-cur-location").style.display="none";
-  }
-
-  function closeSideMenu(){
-    document.getElementById("side-menu").style.width="0";
-    document.getElementById("btn-start").style.display="block";
-    document.getElementById("searchstring").style.display="block";
-    document.getElementById("searchbtn").style.display="block";
-    document.getElementById("btn-cur-location").style.display="block";
-    $('#collapseSelectedArea').text('No area selected');
-  }
-
-  // close SideMenu when pressing <esc> key
-  $( document ).on( 'keydown', function ( e ) {
-    if ( e.keyCode === 27 ) {
-        closeSideMenu();
-    }
-});
-  </script>
 
 </body>
 </html>
