@@ -153,7 +153,7 @@ draw.on('drawend', function(event) {
 		$('#help').modal('show');
 
 		
-
+		var latlongBBOX = bbox;
 		var carFactor = document.getElementById("carFactor").value;
 		var carCount = document.getElementById("carCount").value;
 		var truckFactor = document.getElementById("truckFactor").value;
@@ -174,12 +174,8 @@ draw.on('drawend', function(event) {
 		var trainCount = document.getElementById("trainCount").value;
 		var shipFactor = document.getElementById("shipFactor").value;
 		var shipCount = document.getElementById("shipCount").value;
-		
-
-			console.log(bbox[0]);
-			console.log(bbox[1]);
-			console.log(bbox[2]);
-			console.log(bbox[3]);
+		var scenarioDuration = document.getElementById("scenario-duration").value;
+		var polygons = document.getElementById("add-polygons").value;
     });
 
 
