@@ -100,14 +100,37 @@ draw.on('drawend', function(event) {
 	var botRight = ol.proj.transform(coords[0][2], 'EPSG:3857', 'EPSG:4326');
 	var botRightLon = botRight[0].toFixed(5);
 	var botRightLat = botRight[1].toFixed(5);
-	resetA();
+	displayResetButton();
 
+	if (parseFloat(topLeftLon)<parseFloat(botRightLon)){
+		console.log("ok");
+	} else {
+		var topLeftLonAUX = botRightLon;
+		var botRightLonAUX = topLeftLon;
+		botRightLon = botRightLonAUX;
+		topLeftLon = topLeftLonAUX;
+	}
+
+	if (parseFloat(topLeftLat)>parseFloat(botRightLat)){
+		console.log("ok");
+	} else {
+		var topLeftLatAUX = botRightLat;
+		var botRightLatAUX = topLeftLat;
+		botRightLat = botRightLatAUX;
+		topLeftLat = topLeftLatAUX;
+	}
+
+		
  	$('#collapseSelectedArea').html('<i class="fas fa-arrows-alt-h"></i> Longitude<dd>' + topLeftLon  + ' - ' + botRightLon  + ' </dd>' + 
 				      '<i class="fas fa-arrows-alt-v"></i> Latitude<dd>' + topLeftLat  + ' - ' + botRightLat  +
 							'</dl>');
 
 	$('#btn-generate').prop('disabled', false);
-    });
+
+	return bbox=[topLeftLon, botRightLat, botRightLon, topLeftLat];
+	
+		});
+		
 
     // If the window is resized, we have to update the map accordingly
     $(window).resize(function() { 
@@ -115,16 +138,55 @@ draw.on('drawend', function(event) {
     });
 
 
-		function resetA() {
+		function displayResetButton() {
 			document.getElementById("reset-selection").style.display="block";
 		}
 
 
     // What happenes when we click on the GENERATE button in the side bar?
     $('#btn-generate').on('click', function() {
+			var left = this.topLeftLon;
+		var down = this.botRightLat;
+		var right = this.botRightLon;
+		var up = this.topLeftLat;
 		closeSideMenu();
 		$('#help').modal('show');
+
+		
+
+		var carFactor = document.getElementById("carFactor").value;
+		var carCount = document.getElementById("carCount").value;
+		var truckFactor = document.getElementById("truckFactor").value;
+		var truckCount = document.getElementById("truckCount").value;
+		var busFactor = document.getElementById("busFactor").value;
+		var busCount = document.getElementById("busCount").value;
+		var motorcycleFactor = document.getElementById("motorcycleFactor").value;
+		var motorcycleCount = document.getElementById("motorcycleCount").value;
+		var bicycleFactor = document.getElementById("bicycleFactor").value;
+		var bicycleCount = document.getElementById("bicycleCount").value;
+		var pedestrianFactor = document.getElementById("pedestrianFactor").value;
+		var pedestrianCount = document.getElementById("pedestrianCount").value;
+		var tramFactor = document.getElementById("tramFactor").value;
+		var tramCount = document.getElementById("tramCount").value;
+		var urbantrainFactor = document.getElementById("urbantrainFactor").value;
+		var urbantrainCount = document.getElementById("urbantrainCount").value;
+		var trainFactor = document.getElementById("trainFactor").value;
+		var trainCount = document.getElementById("trainCount").value;
+		var shipFactor = document.getElementById("shipFactor").value;
+		var shipCount = document.getElementById("shipCount").value;
+		
+
+			console.log(bbox[0]);
+			console.log(bbox[1]);
+			console.log(bbox[2]);
+			console.log(bbox[3]);
     });
+
+
+
+
+
+
 
     // What happens when we click on the CANCEL button in the side bar?
     $('#btn-close').on('click', function() {
