@@ -29,6 +29,7 @@
 <?php
 $id = $_GET["id"];
 $completeURL = "129.247.254.217/cgi-bin/" . $id;
+$zipName = "SUMO_files_" . $id . ".zip";
 ?>
 
 <div class="container-fluid">
@@ -48,7 +49,7 @@ $completeURL = "129.247.254.217/cgi-bin/" . $id;
                 <h5>To download the ZIP file, press here:</h5>
                 <br>
                 <br>
-                <button type="button" class="btn btn-success btn-lg" href="http://www.google.com">Download</button>
+                <a href="<?php echo $zipName ?>"><button type="button" class="btn btn-success btn-lg">Download <i class="fas fa-download"></i></button></a>
                 <br>
                 <br>
                 <br>
@@ -64,7 +65,7 @@ $completeURL = "129.247.254.217/cgi-bin/" . $id;
                         <input type="text" class="form-control" name="selectArea" id="selectArea" value="<?php echo $completeURL ?>">
                 </div>
                     <div class="input-group-append">
-                            <button type="button" class="btn btn-info" onclick="selectFunction()">Copy</button>
+                            <button type="button" class="btn btn-info" onclick="selectFunction()">Copy <i class="fas fa-copy"></i></button>
                     </div>
                     
             </form>
