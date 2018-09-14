@@ -1,8 +1,10 @@
-ErrorDocument 404 /404.html
+ErrorDocument 404 /sumo/404.html
 RewriteEngine on
 RewriteCond %{HTTP_REFERER} ^https?://(.+\.)?badsite\.com [NC,OR]
 RewriteCond %{HTTP_REFERER} ^https?://(.+\.)?badsite2\.com [NC,OR]
 RewriteRule \.(jpe?g|png|gif|bmp)$ - [NC,F,L]
+
+AddHandler cgi-script .py
 
 # If you want to display a “blocked” banner in place of the hotlinked image,
 # replace the above rule with:
