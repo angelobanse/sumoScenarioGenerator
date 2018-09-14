@@ -74,7 +74,6 @@ $completeURL = "129.247.254.217/cgi-bin/" . $id;
                   </div>
     </div>
 
-    
 </div>
 
 <div class="text-center">
@@ -83,10 +82,9 @@ $completeURL = "129.247.254.217/cgi-bin/" . $id;
         <form action="index.html">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-long-arrow-alt-left"></i> back to SUMO Scenario Generator</button>
         </form>
-  
+  <br>
+  <br>
 </div>
-
-
 
 </div>
 
@@ -97,13 +95,10 @@ copyText.select();
 document.execCommand("copy");
 $('.alert').show()
 }
-
 </script>
-
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-
 
 </body>
 </html>
