@@ -5,3 +5,4 @@ Disallow: /images/
 Disallow: /bootstrap/
 Disallow: /js/
 Disallow: /css/
+Disallow: /final.php
