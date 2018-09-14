@@ -1,3 +1,4 @@
+#!/usr/bin/python 
 import os
 import webbrowser
 import zipfile
@@ -44,6 +45,10 @@ if os.path.exists("info.txt"):
  os.remove("info.txt")
  os.remove("map.xml")
  os.remove("osm.net.xml")
-
 else:
  print("The file does not exist")
+
+## NEED TEST
+finalURL = "final.php"
+print "Content-type: text/html\n\n"
+print ("<script>window.location = '" + finalURL + "'</script>")
