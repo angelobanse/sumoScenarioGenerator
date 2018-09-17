@@ -132,62 +132,12 @@ draw.on('drawend', function(event) {
 		});
 		
 
-    // If the window is resized, we have to update the map accordingly
-    $(window).resize(function() { 
-	setTimeout( function() { map.updateSize();}, 200);
-    });
+	function displayResetButton() {
+	document.getElementById("reset-selection").style.display="block";
+	}
 
-
-		function displayResetButton() {
-			document.getElementById("reset-selection").style.display="block";
-		}
-
-
-    // When you click on the GENERATE button
-    $('#btn-generate').on('click', function() {
-		closeSideMenu();
-		var left = bbox[0];
-		var down = bbox[1];
-		var right = bbox[2];
-		var up = bbox[3];
-		var carFactor = document.getElementById("carFactor").value;
-		var carCount = document.getElementById("carCount").value;
-		var truckFactor = document.getElementById("truckFactor").value;
-		var truckCount = document.getElementById("truckCount").value;
-		var busFactor = document.getElementById("busFactor").value;
-		var busCount = document.getElementById("busCount").value;
-		var motorcycleFactor = document.getElementById("motorcycleFactor").value;
-		var motorcycleCount = document.getElementById("motorcycleCount").value;
-		var bicycleFactor = document.getElementById("bicycleFactor").value;
-		var bicycleCount = document.getElementById("bicycleCount").value;
-		var pedestrianFactor = document.getElementById("pedestrianFactor").value;
-		var pedestrianCount = document.getElementById("pedestrianCount").value;
-		var tramFactor = document.getElementById("tramFactor").value;
-		var tramCount = document.getElementById("tramCount").value;
-		var urbantrainFactor = document.getElementById("urbantrainFactor").value;
-		var urbantrainCount = document.getElementById("urbantrainCount").value;
-		var trainFactor = document.getElementById("trainFactor").value;
-		var trainCount = document.getElementById("trainCount").value;
-		var shipFactor = document.getElementById("shipFactor").value;
-		var shipCount = document.getElementById("shipCount").value;
-		var scenarioDuration = document.getElementById("scenario-duration").value;
-		var polygons = document.getElementById("add-polygons").value;
-
-		var query = ("?1="+left+"&2="+down+"&3="+right+"&4="+up+"&5="+carFactor+"&6="+carCount+"&7="
-		+truckFactor+"&8="+truckCount+"&9="+busFactor+"&10="+busCount+"&11="+motorcycleFactor+"&12="
-		+motorcycleCount+"&13="+bicycleFactor+"&14="+bicycleCount+"&15="+pedestrianFactor
-		+"&16="+pedestrianCount+"&17="+tramFactor+"&18="+tramCount+"&19="+urbantrainFactor
-		+"&20="+urbantrainCount+"&21="+trainFactor+"&22="+trainCount+"&23="+shipFactor+"&24="+shipCount
-		+"&25="+scenarioDuration+"&26="+polygons);
-
-		window.location.replace("script.php" + query);
-    
-	});
-
-
-
-    // What happens when we click on the CLOSE button
-    $('#btn-close').on('click', function() {
+ // What happens when we click on the CLOSE button
+ $('#btn-close').on('click', function() {
 	closeSideMenu();
 	map.removeInteraction(draw);
 	vectorsource.clear();
@@ -200,9 +150,6 @@ draw.on('drawend', function(event) {
 	document.getElementById("reset-selection").style.display="none";
 	$('#btn-generate').prop('disabled', true);
 	});
-
-
-
 
 // Get current location
 $('#btn-cur-location').on('click', function(event) {
@@ -245,8 +192,6 @@ function chooseAddr(lat, lng) {
     view.setCenter(newlocation);
     view.setZoom(16);
 }
-
-
 
 // When pressing the "Add" button
 function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount){
@@ -294,3 +239,43 @@ $('#btn-enable-trams').on('click',function(event){ vehicleAdded(event, this, 'tr
 $('#btn-enable-urbantrains').on('click',function(event){ vehicleAdded(event, this, 'urbantrain', 40, 2); });
 $('#btn-enable-trains').on('click',function(event){ vehicleAdded(event, this, 'train', 40, 2); });
 $('#btn-enable-ships').on('click',function(event){ vehicleAdded(event, this, 'ship', 40, 2); });
+
+// When you click on the GENERATE button
+$('#btn-generate').on('click', function() {
+	closeSideMenu();
+	var left = bbox[0];
+	var down = bbox[1];
+	var right = bbox[2];
+	var up = bbox[3];
+	var carFactor = document.getElementById("carFactor").value;
+	var carCount = document.getElementById("carCount").value;
+	var truckFactor = document.getElementById("truckFactor").value;
+	var truckCount = document.getElementById("truckCount").value;
+	var busFactor = document.getElementById("busFactor").value;
+	var busCount = document.getElementById("busCount").value;
+	var motorcycleFactor = document.getElementById("motorcycleFactor").value;
+	var motorcycleCount = document.getElementById("motorcycleCount").value;
+	var bicycleFactor = document.getElementById("bicycleFactor").value;
+	var bicycleCount = document.getElementById("bicycleCount").value;
+	var pedestrianFactor = document.getElementById("pedestrianFactor").value;
+	var pedestrianCount = document.getElementById("pedestrianCount").value;
+	var tramFactor = document.getElementById("tramFactor").value;
+	var tramCount = document.getElementById("tramCount").value;
+	var urbantrainFactor = document.getElementById("urbantrainFactor").value;
+	var urbantrainCount = document.getElementById("urbantrainCount").value;
+	var trainFactor = document.getElementById("trainFactor").value;
+	var trainCount = document.getElementById("trainCount").value;
+	var shipFactor = document.getElementById("shipFactor").value;
+	var shipCount = document.getElementById("shipCount").value;
+	var scenarioDuration = document.getElementById("scenario-duration").value;
+	var polygons = document.getElementById("add-polygons").value;
+
+	var query = ("?1="+left+"&2="+down+"&3="+right+"&4="+up+"&5="+carFactor+"&6="+carCount+"&7="
+	+truckFactor+"&8="+truckCount+"&9="+busFactor+"&10="+busCount+"&11="+motorcycleFactor+"&12="
+	+motorcycleCount+"&13="+bicycleFactor+"&14="+bicycleCount+"&15="+pedestrianFactor
+	+"&16="+pedestrianCount+"&17="+tramFactor+"&18="+tramCount+"&19="+urbantrainFactor
+	+"&20="+urbantrainCount+"&21="+trainFactor+"&22="+trainCount+"&23="+shipFactor+"&24="+shipCount
+	+"&25="+scenarioDuration+"&26="+polygons);
+
+	window.location.replace("script.php" + query);
+});

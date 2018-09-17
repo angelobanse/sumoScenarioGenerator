@@ -38,8 +38,8 @@ $Duration = $_GET['25'];
 $Polygons = $_GET['26'];
 
 /* $cmd = "python test.py";
-shell_exec($cmd);
-header("Location: http://www.google.com");  */
+shell_exec($cmd);*/
+header("Location: http://www.google.com");
 
 
 ?>
