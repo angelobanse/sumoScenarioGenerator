@@ -5,7 +5,3 @@ RewriteCond %{HTTP_REFERER} ^https?://(.+\.)?badsite2\.com [NC,OR]
 
 
 AddHandler cgi-script .py
-
-# If you want to display a “blocked” banner in place of the hotlinked image,
-# replace the above rule with:
-# RewriteRule \.(jpe?g|png|gif|bmp) http://example.com/blocked.png [R,L]

@@ -143,17 +143,13 @@ draw.on('drawend', function(event) {
 		}
 
 
-    // What happenes when we click on the GENERATE button in the side bar?
+    // When you click on the GENERATE button
     $('#btn-generate').on('click', function() {
-			var left = this.topLeftLon;
-		var down = this.botRightLat;
-		var right = this.botRightLon;
-		var up = this.topLeftLat;
 		closeSideMenu();
-		$('#help').modal('show');
-
-		
-		var latlongBBOX = bbox;
+		var left = bbox[0];
+		var down = bbox[1];
+		var right = bbox[2];
+		var up = bbox[3];
 		var carFactor = document.getElementById("carFactor").value;
 		var carCount = document.getElementById("carCount").value;
 		var truckFactor = document.getElementById("truckFactor").value;
@@ -176,28 +172,34 @@ draw.on('drawend', function(event) {
 		var shipCount = document.getElementById("shipCount").value;
 		var scenarioDuration = document.getElementById("scenario-duration").value;
 		var polygons = document.getElementById("add-polygons").value;
-    });
+
+		var query = ("?1="+left+"&2="+down+"&3="+right+"&4="+up+"&5="+carFactor+"&6="+carCount+"&7="
+		+truckFactor+"&8="+truckCount+"&9="+busFactor+"&10="+busCount+"&11="+motorcycleFactor+"&12="
+		+motorcycleCount+"&13="+bicycleFactor+"&14="+bicycleCount+"&15="+pedestrianFactor
+		+"&16="+pedestrianCount+"&17="+tramFactor+"&18="+tramCount+"&19="+urbantrainFactor
+		+"&20="+urbantrainCount+"&21="+trainFactor+"&22="+trainCount+"&23="+shipFactor+"&24="+shipCount
+		+"&25="+scenarioDuration+"&26="+polygons);
+
+		window.location.replace("script.php" + query);
+    
+	});
 
 
 
-
-
-
-
-    // What happens when we click on the CANCEL button in the side bar?
+    // What happens when we click on the CLOSE button
     $('#btn-close').on('click', function() {
 	closeSideMenu();
 	map.removeInteraction(draw);
 	vectorsource.clear();
     });
 
-		// When clicking "Reset selection" button
-		$('#reset-selection').on('click', function() {
-			vectorsource.clear(); 
-			$('#collapseSelectedArea').text('No area selected');
-			document.getElementById("reset-selection").style.display="none";
-			$('#btn-generate').prop('disabled', true);
-				});
+	// When clicking "Reset selection" button
+	$('#reset-selection').on('click', function() {
+	vectorsource.clear(); 
+	$('#collapseSelectedArea').text('No area selected');
+	document.getElementById("reset-selection").style.display="none";
+	$('#btn-generate').prop('disabled', true);
+	});
 
 
 
