@@ -103,7 +103,6 @@ draw.on('drawend', function(event) {
 	displayResetButton();
 
 	if (parseFloat(topLeftLon)<parseFloat(botRightLon)){
-		console.log("ok");
 	} else {
 		var topLeftLonAUX = botRightLon;
 		var botRightLonAUX = topLeftLon;
@@ -112,7 +111,6 @@ draw.on('drawend', function(event) {
 	}
 
 	if (parseFloat(topLeftLat)>parseFloat(botRightLat)){
-		console.log("ok");
 	} else {
 		var topLeftLatAUX = botRightLat;
 		var botRightLatAUX = topLeftLat;

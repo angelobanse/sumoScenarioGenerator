@@ -37,14 +37,12 @@ $ShipCount = $_GET['24'];
 $Duration = $_GET['25'];
 $Polygons = $_GET['26'];
 
-$cmd = "python test.py ".$Left." ".$Down." ".$Right." ".$Up." ".$CarFactor." ".$CarCount." ".$TruckFactor." ".$TruckCount
+$cmd = "python script.py ".$Left." ".$Down." ".$Right." ".$Up." ".$CarFactor." ".$CarCount." ".$TruckFactor." ".$TruckCount
 ." ".$BusFactor." ".$BusCount." ".$MotorcycleFactor." ".$MotorcycleCount." ".$BicycleFactor." ".$BicycleCount
 ." ".$PedestrianFactor." ".$PedestrianCount." ".$TramFactor." ".$TramCount." ".$UrbanTrainFactor." ".$UrbanTrainCount
 ." ".$TrainFactor." ".$TrainCount." ".$ShipFactor." ".$ShipCount." ".$Duration." ".$Polygons;
 shell_exec($cmd);
-header("Location: http://www.google.com");
-
-
+header("Location: final.php");
 ?>
     
 </body>
