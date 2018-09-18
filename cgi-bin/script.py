@@ -1,6 +1,5 @@
 #!/usr/bin/python 
 import os
-import webbrowser
 import zipfile
 import sys
 import datetime
@@ -13,26 +12,41 @@ import xml.etree.ElementTree as XML
 
 sessionID = hex(int(time.time())) + str(int(random.randint(1,1001)*pi))
 
-left = 13.5282
-down = 52.4264
-right = 13.5377
-up = 52.4306
+Left = sys.argv[1]
+Down = sys.argv[2]
+Right = sys.argv[3]
+Up = sys.argv[4]
+CarFactor = sys.argv[5]
+CarCount = sys.argv[6]
+TruckFactor = sys.argv[7]
+TruckCount = sys.argv[8]
+BusFactor = sys.argv[9]
+BusCount = sys.argv[10]
+MotorcycleFactor = sys.argv[11]
+MotorcycleCount = sys.argv[12]
+BicycleFactor = sys.argv[13]
+BicycleCount = sys.argv[14]
+PedestrianFactor = sys.argv[15]
+PedestrianCount = sys.argv[16]
+TramFactor = sys.argv[17]
+TramCount = sys.argv[18]
+UrbanTrainFactor = sys.argv[19]
+UrbanTrainCount = sys.argv[20]
+TrainFactor = sys.argv[21]
+TrainCount = sys.argv[22]
+ShipFactor = sys.argv[23]
+ShipCount = sys.argv[24]
+Duration = sys.argv[25]
+Polygons = sys.argv[26]
 
-url = "https://overpass-api.de/api/map?bbox="+str(left)+","+str(down)+","+str(right)+","+str(up)
-r = requests.get(url, allow_redirects=True)
-open('map','wb').write(r.content)
-
-os.rename('map','map.xml')
-os.system('netconvert --osm map.xml -o osm.net.xml')
-
-timeNow = datetime.datetime.now()
-
-## generate info.txt file
-infoFileName = "info.txt"
-infoFile = open(infoFileName, "wt")
-infoText = "Generated on " + str(timeNow.strftime("%c")) + " by SUMO Scenario Generator"
-infoFile.write(infoText)
-infoFile.close()
+## generate osm.net.xml file
+overpassAPI = "https://overpass-api.de/api/map?bbox="+str(Left)+","+str(Down)+","+str(Right)+","+str(Up)
+overpassRequest = requests.get(overpassAPI, allow_redirects=True)
+osmMapName = "map_" + sessionID + ".xml"
+osmNetName = "osm_" + sessionID + ".net.xml"
+open(osmMapName,'wb').write(overpassRequest.content)
+netconvertCMD = 'netconvert --osm ' + osmMapName + ' -o ' + osmNetName
+os.system(netconvertCMD)
 
 ## generate osm.view.xml file
 viewSettings = XML.Element('viewsettings')
@@ -41,26 +55,37 @@ viewItem2 = XML.SubElement(viewSettings, 'delay')
 viewItem1.set('name','real world')
 viewItem2.set('value','20')
 xmlViewSettings = XML.tostring(viewSettings)
-viewFile = open("osm.view.xml", "w")
+viewFileName = "osm_" + sessionID + ".view.xml"
+viewFile = open(viewFileName, "w")
 viewFile.write(xmlViewSettings)
 
+timeNow = datetime.datetime.now()
+
+## generate info.txt file
+infoFileName = "info_" + sessionID + ".txt"
+infoFile = open(infoFileName, "wt")
+infoText = "Generated on " + str(timeNow.strftime("%c")) + " by SUMO Scenario Generator"
+infoFile.write(infoText)
+infoFile.close()
+
 ## generate .ZIP
-zipName = "SUMO files"
-finalZip = zipfile.ZipFile(zipName + ".zip","w")
-finalZip.write("info.txt")
-finalZip.write("osm.net.xml")
-finalZip.write("osm.view.xml")
+zipName = "SUMO-files" + "_" + sessionID + ".zip"
+finalZip = zipfile.ZipFile(zipName, "w")
+finalZip.write(infoFileName, arcname="info.txt")
+finalZip.write(osmNetName, arcname="osm.net.xml")
+finalZip.write(viewFileName, arcname="osm.view.xml")
 finalZip.close()
 
 ## delete files from the server directory (outside the .ZIP)
-if os.path.exists("info.txt"):
- os.remove("info.txt")
- os.remove("map.xml")
- os.remove("osm.net.xml")
+if os.path.exists(infoFileName):
+ os.remove(infoFileName)
+ os.remove(viewFileName)
+ os.remove(osmMapName)
+ os.remove(osmNetName)
 else:
  print("The file does not exist")
 
 ## NEED TEST
-finalURL = "final.php"
+finalURL = "final.php" + "?id=" + sessionID
 print "Content-type: text/html\n\n"
 print ("<script>window.location = '" + finalURL + "'</script>")

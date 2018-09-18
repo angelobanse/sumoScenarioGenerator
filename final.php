@@ -28,8 +28,8 @@
     
 <?php
 $id = $_GET["id"];
-$completeURL = "129.247.254.217/cgi-bin/" . $id;
-$zipName = "SUMO_files_" . $id . ".zip";
+$zipName = "SUMO-files_" . $id . ".zip";
+$completeURL = "129.247.254.217/cgi-bin/" . $zipName;
 ?>
 
 <div class="container-fluid">
