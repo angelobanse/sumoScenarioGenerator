@@ -9,6 +9,7 @@ import time
 import random
 from math import pi
 import requests #Available under "pip install requests"
+import xml.etree.ElementTree as XML
 
 sessionID = hex(int(time.time())) + str(int(random.randint(1,1001)*pi))
 
@@ -33,11 +34,22 @@ infoText = "Generated on " + str(timeNow.strftime("%c")) + " by SUMO Scenario Ge
 infoFile.write(infoText)
 infoFile.close()
 
+## generate osm.view.xml file
+viewSettings = XML.Element('viewsettings')
+viewItem1 = XML.SubElement(viewSettings, 'scheme')
+viewItem2 = XML.SubElement(viewSettings, 'delay')
+viewItem1.set('name','real world')
+viewItem2.set('value','20')
+xmlViewSettings = XML.tostring(viewSettings)
+viewFile = open("osm.view.xml", "w")
+viewFile.write(xmlViewSettings)
+
 ## generate .ZIP
 zipName = "SUMO files"
 finalZip = zipfile.ZipFile(zipName + ".zip","w")
 finalZip.write("info.txt")
 finalZip.write("osm.net.xml")
+finalZip.write("osm.view.xml")
 finalZip.close()
 
 ## delete files from the server directory (outside the .ZIP)
