@@ -1,16 +1,17 @@
+# Olaf Angelo Banse Bueno - 2018
 #!/usr/bin/python 
 import os
 import zipfile
 import sys
 import datetime
-import platform
+#import platform
 import time
-import random
-from math import pi
+#import random
+#from math import pi
 import requests #Available under "pip install requests"
 import xml.etree.ElementTree as XML
 
-sessionID = hex(int(time.time())) + str(int(random.randint(1,1001)*pi))
+#sessionID = hex(int(time.time())) + str(int(random.randint(1,1001)*pi))
 
 Left = sys.argv[1]
 Down = sys.argv[2]
@@ -38,6 +39,7 @@ ShipFactor = sys.argv[23]
 ShipCount = sys.argv[24]
 Duration = sys.argv[25]
 Polygons = sys.argv[26]
+sessionID = sys.argv[27]
 
 ## generate osm.net.xml file
 overpassAPI = "https://overpass-api.de/api/map?bbox="+str(Left)+","+str(Down)+","+str(Right)+","+str(Up)
@@ -86,6 +88,6 @@ else:
  print("The file does not exist")
 
 ## NEED TEST
-finalURL = "final.php" + "?id=" + sessionID
-print "Content-type: text/html\n\n"
-print ("<script>window.location = '" + finalURL + "'</script>")
+#finalURL = "final.php" + "?id=" + sessionID
+#print "Content-type: text/html\n\n"
+#print ("<script>window.location = '" + finalURL + "'</script>")
