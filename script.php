@@ -43,7 +43,7 @@ $Polygons = $_GET['26'];
 
 $sessionID = strval(rand(10, 99)) . dechex(time()) . strval(rand(10, 10000));
 
-$cmd = "python script.py ".$Left." ".$Down." ".$Right." ".$Up." ".$CarFactor." ".$CarCount." ".$TruckFactor." ".$TruckCount
+$cmd = "python cgi-bin/script.py ".$Left." ".$Down." ".$Right." ".$Up." ".$CarFactor." ".$CarCount." ".$TruckFactor." ".$TruckCount
 ." ".$BusFactor." ".$BusCount." ".$MotorcycleFactor." ".$MotorcycleCount." ".$BicycleFactor." ".$BicycleCount
 ." ".$PedestrianFactor." ".$PedestrianCount." ".$TramFactor." ".$TramCount." ".$UrbanTrainFactor." ".$UrbanTrainCount
 ." ".$TrainFactor." ".$TrainCount." ".$ShipFactor." ".$ShipCount." ".$Duration." ".$Polygons." ".$sessionID;
