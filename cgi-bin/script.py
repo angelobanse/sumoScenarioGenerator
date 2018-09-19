@@ -8,8 +8,16 @@ import datetime
 import time
 #import random
 #from math import pi
-import requests #Available under "pip install requests"
+#import requests #Available under "pip install requests"
 import xml.etree.ElementTree as XML
+
+try:
+    import httplib
+    import urlparse
+except ImportError:
+    # for python3
+    import http.client as httplib
+    import urllib.parse as urlparse
 
 #sessionID = hex(int(time.time())) + str(int(random.randint(1,1001)*pi))
 
@@ -42,11 +50,16 @@ Polygons = sys.argv[26]
 sessionID = sys.argv[27]
 
 ## generate osm.net.xml file
-overpassAPI = "https://overpass-api.de/api/map?bbox="+str(Left)+","+str(Down)+","+str(Right)+","+str(Up)
-overpassRequest = requests.get(overpassAPI, allow_redirects=True)
 osmMapName = "map_" + sessionID + ".xml"
 osmNetName = "osm_" + sessionID + ".net.xml"
-open(osmMapName,'wb').write(overpassRequest.content)
+conn = httplib.HTTPConnection("overpass-api.de")
+req = "/api/map?bbox="+str(Left)+","+str(Down)+","+str(Right)+","+str(Up)
+conn.request("GET", req)
+r = conn.getresponse()
+osmMap = open(os.path.join(os.getcwd(), "%s" % (osmMapName)), "w")
+osmMap.write(r.read())
+osmMap.close()
+conn.close()
 netconvertCMD = 'netconvert --osm ' + osmMapName + ' -o ' + osmNetName
 os.system(netconvertCMD)
 
