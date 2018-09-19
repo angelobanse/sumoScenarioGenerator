@@ -8,9 +8,7 @@ import datetime
 import time
 #import random
 #from math import pi
-#import requests #Available under "pip install requests"
 import xml.etree.ElementTree as XML
-
 try:
     import httplib
     import urlparse
