@@ -10,7 +10,7 @@
 <body>
 
 <?php
-if($_GET["id"]==""){
+if($_GET['1']==""){
     header("Location: index.html");
 }
 else {
