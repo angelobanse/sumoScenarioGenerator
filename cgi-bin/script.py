@@ -60,6 +60,7 @@ xmlViewSettings = XML.tostring(viewSettings)
 viewFileName = "osm_" + sessionID + ".view.xml"
 viewFile = open(viewFileName, "w")
 viewFile.write(xmlViewSettings)
+viewFile.close()
 
 timeNow = datetime.datetime.now()
 
