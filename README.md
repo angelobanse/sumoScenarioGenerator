@@ -24,7 +24,7 @@ It's supposed to be implemented on a web server, but it can run locally if SUMO 
 Bugs
 ----
 
-To report any bugs or request features, please use the [issues tab of this repository](https://github.com/angelobanse/sumoScenarioGenerator/issues).
+To report any bugs or request features, please use the [issues tab](https://github.com/angelobanse/sumoScenarioGenerator/issues) of this repository.
 
 
 License
