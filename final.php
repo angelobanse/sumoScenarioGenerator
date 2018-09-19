@@ -27,12 +27,17 @@
 <body style="background:#f8f9fa">
     
 <?php
+if($_GET["id"]==""){
+        header("Location: index.html");
+}
+else {
 $id = $_GET["id"];
 $full_url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $delete_from_url = 'final.php?id=' . $id;
 $dir_url = str_replace($delete_from_url, '', $full_url);
 $zipName = "SUMO-files_" . $id . ".zip";
 $completeURL = $dir_url . "cgi-bin/" . $zipName;
+}
 ?>
 
 <div class="container-fluid">
