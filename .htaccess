@@ -1,7 +1,3 @@
 ErrorDocument 404 /sumo/404.html
 RewriteEngine on
-RewriteCond %{HTTP_REFERER} ^https?://(.+\.)?badsite\.com [NC,OR]
-RewriteCond %{HTTP_REFERER} ^https?://(.+\.)?badsite2\.com [NC,OR]
-
-
 AddHandler cgi-script .py
