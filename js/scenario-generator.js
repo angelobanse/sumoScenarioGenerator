@@ -241,6 +241,7 @@ $('#btn-enable-ships').on('click',function(event){ vehicleAdded(event, this, 'sh
 // When you click on the GENERATE button
 $('#btn-generate').on('click', function() {
 	closeSideMenu();
+	$('#loading').modal('show');	
 	var left = bbox[0];
 	var down = bbox[1];
 	var right = bbox[2];
