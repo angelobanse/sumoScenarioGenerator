@@ -1,3 +1,4 @@
+<!-- Olaf Angelo Banse Bueno / 2018 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,10 @@
 <body>
 
 <?php
-
+if($_GET["id"]==""){
+    header("Location: index.html");
+}
+else {
 $Left = $_GET['1'];
 $Down = $_GET["2"];
 $Right = $_GET['3'];
@@ -45,6 +49,7 @@ $cmd = "python script.py ".$Left." ".$Down." ".$Right." ".$Up." ".$CarFactor." "
 ." ".$TrainFactor." ".$TrainCount." ".$ShipFactor." ".$ShipCount." ".$Duration." ".$Polygons." ".$sessionID;
 shell_exec($cmd);
 header("Location: final.php?id=".$sessionID);
+}
 ?>
     
 </body>
