@@ -73,6 +73,12 @@ viewFile = open(viewFileName, "w")
 viewFile.write(xmlViewSettings)
 viewFile.close()
 
+## generate osm.poly.xml file
+osmPolyName = "poly_" + sessionID + ".xml"
+if Polygons == "true":
+    polyconvertCMD = 'polyconvert --osm ' + osmNetName + ' -o ' + osmPolyName
+    os.system(polyconvertCMD)
+
 timeNow = datetime.datetime.now()
 
 ## generate info.txt file
@@ -88,6 +94,8 @@ finalZip = zipfile.ZipFile(zipName, "w")
 finalZip.write(infoFileName, arcname="info.txt")
 finalZip.write(osmNetName, arcname="osm.net.xml")
 finalZip.write(viewFileName, arcname="osm.view.xml")
+if Polygons == "true":
+    finalZip.write(osmPolyName, arcname="osm.poly.xml")
 finalZip.close()
 
 ## delete files from the server directory (outside the .ZIP)
@@ -96,6 +104,8 @@ if os.path.exists(infoFileName):
  os.remove(viewFileName)
  os.remove(osmMapName)
  os.remove(osmNetName)
+ if Polygons == "true":
+     os.remove(osmPolyName)
 else:
  print("The file does not exist")
 
