@@ -288,7 +288,8 @@ $('#btn-generate').on('click', function() {
 	if (shipCount ==""){shipCount="0"};
 	var scenarioDuration = document.getElementById("scenario-duration").value;
 	if (scenarioDuration ==""){scenarioDuration="3600"};
-	var polygons = document.getElementById("add-polygons").value;
+	var polygons = document.getElementById("add-polygons").checked;
+
 
 	var query = ("?1="+left+"&2="+down+"&3="+right+"&4="+up+"&5="+carFactor+"&6="+carCount+"&7="
 	+truckFactor+"&8="+truckCount+"&9="+busFactor+"&10="+busCount+"&11="+motorcycleFactor+"&12="
