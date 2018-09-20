@@ -6,8 +6,6 @@ import sys
 import datetime
 #import platform
 import time
-#import random
-#from math import pi
 import xml.etree.ElementTree as XML
 try:
     import httplib
@@ -16,8 +14,6 @@ except ImportError:
     # for python3
     import http.client as httplib
     import urllib.parse as urlparse
-
-#sessionID = hex(int(time.time())) + str(int(random.randint(1,1001)*pi))
 
 Left = sys.argv[1]
 Down = sys.argv[2]
