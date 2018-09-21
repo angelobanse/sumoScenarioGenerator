@@ -7,6 +7,7 @@ $(document).ready(function(){
 
 
 function openSideMenu(){
+  document.getElementById("move").style.marginRight="350px";
   document.getElementById("side-menu").style.width="350px";
   document.getElementById("btn-start").style.display="none";
   document.getElementById("searchstring").style.display="none";
@@ -16,6 +17,7 @@ function openSideMenu(){
 }
 
 function closeSideMenu(){
+  document.getElementById("move").style.marginRight="0";
   document.getElementById("side-menu").style.width="0";
   document.getElementById("btn-start").style.display="block";
   document.getElementById("searchstring").style.display="block";

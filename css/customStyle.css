@@ -34,6 +34,10 @@
     text-decoration: none;
 }
 
+.moveClass{
+    transition: 0.2s;
+}
+
 .side-nav a{
     text-decoration: none;
 }

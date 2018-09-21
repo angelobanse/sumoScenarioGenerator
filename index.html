@@ -42,6 +42,7 @@
                     <button type="button" class="btn btn-primary" id="btn-start" tabindex="2" onclick="openSideMenu()">Start here <i class="fa fa-play-circle"></i></button>
                 </li>
             </ul>
+            <div class="moveClass" id="move">
             <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
                 <li class="m-2 nav-item active">
                     <a class="nav-link" href="#" data-toggle="modal" data-keyboard="true" data-target="#help" tabindex="3"><i class="fa fa-question-circle"></i> Help</span></a>
@@ -50,6 +51,7 @@
                     <a class="nav-link" href="#" data-toggle="modal" data-keyboard="true" data-target="#about" tabindex="4"><i class="fa fa-info-circle"></i> About</span></a>
                 </li>
             </ul>
+          </div>
       </nav>
 
     <div id="myposition"></div>
@@ -76,6 +78,7 @@
 
     <!-- SIDE MENU -->
       <div id="side-menu" class="side-nav">
+          <!-- "Generate" button -->
           <button id="btn-generate" class="btn btn-success btn-generate" style="margin:30px 10px 30px 10px;" disabled>Generate</button>
           <br>
         <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
@@ -354,7 +357,7 @@
                   </div>    
             </div>
           </div>
-          <!-- "Generate" button -->
+          <br>
           
         </div>
       </div>
