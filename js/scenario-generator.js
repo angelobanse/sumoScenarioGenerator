@@ -30,7 +30,7 @@ function closeSideMenu(){
 
 // close SideMenu when pressing <esc> key
 $( document ).on( 'keydown', function ( e ) {
-  if ( e.keyCode === 27 ) {
+  if ( e.keyCode === 27 && !$('#help').is(':visible') && !$('#about').is(':visible')) {
 	  closeSideMenu();
   }
 });
