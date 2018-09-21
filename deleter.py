@@ -11,8 +11,8 @@ desired_time = epoch_now - (24 * 3600) # desired_time is epoch_now minus 24 hour
 
 os.chdir(directory)
 
-for zipFiles in os.listdir('.zip'):
+for zipFiles in os.listdir('.'):
     st = os.stat(zipFiles)
     mtime = st.st_mtime
-    if mtime < epoch_now and zipFiles.endswith(".zip")
+    if mtime < desired_time and zipFiles.endswith(".zip"):
      os.remove(zipFiles)
