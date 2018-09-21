@@ -87,3 +87,7 @@
   input:invalid {
     border: 2px solid red;
   }
+
+.card-header{
+        height: 50px;/*remove this and header height will be 100px*/
+    }
