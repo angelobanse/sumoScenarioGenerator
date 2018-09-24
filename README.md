@@ -6,19 +6,19 @@ This web application generates and downloads the necessary files to start a basi
 It's supposed to be implemented on a web server, but it can run locally if SUMO and Python are installed and PHP is enabled to run (you could use WAMP, MAMP or LAMP).
 
 <p align="center">
-  <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/6xNfvN7.png">
+  <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/ZdmF6EG.png">
 </p>
 
 <p align="center">
-  <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/tVSrGJf.png">
+  <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/TEAFLQg.png">
 </p>
 
 <p align="center">
-  <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/AWpqVHa.png">
+  <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/x3TP7Ls.png">
 </p>
 
 <p align="center">
-  <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/HmJ8FsH.png">
+  <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/ZPUyELK.png">
 </p>
 
 Bugs
