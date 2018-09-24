@@ -193,13 +193,7 @@ function chooseAddr(lat, lng) {
     view.setZoom(16);
 }
 
-$('#collapseCars').on('shown.bs.collapse', function () {
-	console.log("Opened")
- });
- 
- $('#collapseCars').on('hidden.bs.collapse', function () {
-	console.log("Closed")
- });
+
 
 function change(pill, count){
 	$(pill).text(document.getElementById(count).value);
