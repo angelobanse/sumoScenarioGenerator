@@ -193,8 +193,21 @@ function chooseAddr(lat, lng) {
     view.setZoom(16);
 }
 
+$('#collapseCars').on('shown.bs.collapse', function () {
+	console.log("Opened")
+ });
+ 
+ $('#collapseCars').on('hidden.bs.collapse', function () {
+	console.log("Closed")
+ });
+
+function change(pill, count){
+	$(pill).text(document.getElementById(count).value);
+}
+
+
 // When pressing the "Add" button
-function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount){
+function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount, pill){
 
 			// Are we handling a vehicle type or options button?
 			if (vtype != "options") {
@@ -204,11 +217,13 @@ function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount){
 					$('#'+vtype+'Factor').val(defaultFactor);
 					$('#'+vtype+'Count').val(defaultCount);
 					window[vtype+'Enabled'] = true;
+					$(pill).text(defaultCount);
 				}
 				else {
 					$(btn).text("Add");
 					$(btn).removeClass("btn btn-success btn-sm float-right").addClass("btn btn-secondary btn-sm float-right");
 					window[vtype+'Enabled'] = false;
+					$(pill).text("");
 				}
 				}
 			
@@ -229,16 +244,16 @@ function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount){
 }
 
 // "Add" buttons
-$('#btn-enable-cars').on('click',function(event){ vehicleAdded(event, this, 'car', 5, 12); });
-$('#btn-enable-trucks').on('click',function(event){ vehicleAdded(event, this, 'truck', 5, 8); });
-$('#btn-enable-bus').on('click',function(event){ vehicleAdded(event, this, 'bus', 5, 4); });
-$('#btn-enable-motorcycles').on('click',function(event){ vehicleAdded(event, this, 'motorcycle', 2, 4); });
-$('#btn-enable-bicycles').on('click',function(event){ vehicleAdded(event, this, 'bicycle', 2, 6); });
-$('#btn-enable-pedestrians').on('click',function(event){ vehicleAdded(event, this, 'pedestrian', 1, 10); });
-$('#btn-enable-trams').on('click',function(event){ vehicleAdded(event, this, 'tram', 20, 2); });
-$('#btn-enable-urbantrains').on('click',function(event){ vehicleAdded(event, this, 'urbantrain', 40, 2); });
-$('#btn-enable-trains').on('click',function(event){ vehicleAdded(event, this, 'train', 40, 2); });
-$('#btn-enable-ships').on('click',function(event){ vehicleAdded(event, this, 'ship', 40, 2); });
+$('#btn-enable-cars').on('click',function(event){ vehicleAdded(event, this, 'car', 5, 12, '#car-pill'); });
+$('#btn-enable-trucks').on('click',function(event){ vehicleAdded(event, this, 'truck', 5, 8, '#truck-pill'); });
+$('#btn-enable-bus').on('click',function(event){ vehicleAdded(event, this, 'bus', 5, 4, '#bus-pill'); });
+$('#btn-enable-motorcycles').on('click',function(event){ vehicleAdded(event, this, 'motorcycle', 2, 4, '#motorcycle-pill'); });
+$('#btn-enable-bicycles').on('click',function(event){ vehicleAdded(event, this, 'bicycle', 2, 6, '#bicycle-pill'); });
+$('#btn-enable-pedestrians').on('click',function(event){ vehicleAdded(event, this, 'pedestrian', 1, 10, '#pedestrian-pill'); });
+$('#btn-enable-trams').on('click',function(event){ vehicleAdded(event, this, 'tram', 20, 2, '#tram-pill'); });
+$('#btn-enable-urbantrains').on('click',function(event){ vehicleAdded(event, this, 'urbantrain', 40, 2, '#urbantrain-pill'); });
+$('#btn-enable-trains').on('click',function(event){ vehicleAdded(event, this, 'train', 40, 2, '#train-pill'); });
+$('#btn-enable-ships').on('click',function(event){ vehicleAdded(event, this, 'ship', 40, 2, '#ship-pill'); });
 
 // When you click on the GENERATE button
 $('#btn-generate').on('click', function() {

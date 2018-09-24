@@ -102,9 +102,11 @@
           </div>
           </div>
           <!-- Cars -->
+          
+
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-car"></i> Cars
+                <span id="car-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-car"></i> Cars
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseCars">
                 <button id="btn-enable-cars" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -118,7 +120,7 @@
                     </div>
                     <div class="form-row">
                     <div class="col" for="carCount"><small>Vehicle Count</small></div>
-                    <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="carCount"></div>
+                    <div class="col"><input type="number" onchange="change('#car-pill','carCount')" min="0.2" max="100" step="0.1" class="form-control" id="carCount"></div>
                 </div>
                   </div>
               </div>
@@ -127,7 +129,7 @@
           <!-- Trucks -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-truck"></i> Trucks
+                <span id="truck-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-truck"></i> Trucks
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseTrucks">
                 <button id="btn-enable-trucks" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -141,7 +143,7 @@
                       </div>
                       <div class="form-row">
                       <div class="col" for="truckCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="truckCount"></div>
+                      <div class="col"><input type="number" onchange="change('#truck-pill','truckCount')" min="0.2" max="100" step="0.1" class="form-control" id="truckCount"></div>
                   </div>
                     </div>
               </div>
@@ -150,7 +152,7 @@
           <!-- Bus -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-bus"></i> Bus
+                <span id="bus-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-bus"></i> Bus
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseBus">
                 <button id="btn-enable-bus" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -164,7 +166,7 @@
                       </div>
                       <div class="form-row">
                       <div class="col" for="busCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="busCount"></div>
+                      <div class="col"><input type="number" onchange="change('#bus-pill','busCount')" min="0.2" max="100" step="0.1" class="form-control" id="busCount"></div>
                   </div>
                     </div>
               </div>
@@ -173,7 +175,7 @@
           <!-- Motorcycles -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-motorcycle"></i> Motorcycles
+                <span id="motorcycle-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-motorcycle"></i> Motorcycles
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseMotorcycles">
                 <button id="btn-enable-motorcycles" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -187,7 +189,7 @@
                       </div>
                       <div class="form-row">
                       <div class="col" for="motorcycleCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="motorcycleCount"></div>
+                      <div class="col"><input type="number" onchange="change('#motorcycle-pill','motorcycleCount')" min="0.2" max="100" step="0.1" class="form-control" id="motorcycleCount"></div>
                   </div>
                     </div>
               </div>
@@ -196,7 +198,7 @@
           <!-- Bicycles -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-bicycle"></i> Bicycles
+                <span id="bicycle-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-bicycle"></i> Bicycles
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseBicycles">
                 <button id="btn-enable-bicycles" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -210,7 +212,7 @@
                       </div>
                       <div class="form-row">
                       <div class="col" for="bicycleCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="bicycleCount"></div>
+                      <div class="col"><input type="number" onchange="change('#bicycle-pill','bicycleCount')" min="0.2" max="100" step="0.1" class="form-control" id="bicycleCount"></div>
                   </div>
                     </div>
               </div>
@@ -219,7 +221,7 @@
           <!-- Pedestrians -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-male"></i> Pedestrians
+                <span id="pedestrian-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-male"></i> Pedestrians
               <a class="collapsed card-link" data-toggle="collapse" href="#collapsePedestrians">
                 <button id="btn-enable-pedestrians" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -233,7 +235,7 @@
                       </div>
                       <div class="form-row">
                       <div class="col" for="pedestrianCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="pedestrianCount"></div>
+                      <div class="col"><input type="number" onchange="change('#pedestrian-pill','pedestrianCount')" min="0.2" max="100" step="0.1" class="form-control" id="pedestrianCount"></div>
                   </div>
                     </div>
               </div>
@@ -242,7 +244,7 @@
           <!-- Trams -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-train"></i> Trams
+                <span id="tram-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-train"></i> Trams
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseTrams">
                 <button id="btn-enable-trams" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -256,7 +258,7 @@
                       </div>
                       <div class="form-row">
                       <div class="col" for="tramCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="tramCount"></div>
+                      <div class="col"><input type="number" onchange="change('#tram-pill','tramCount')" min="0.2" max="100" step="0.1" class="form-control" id="tramCount"></div>
                   </div>
                     </div>
               </div>
@@ -265,7 +267,7 @@
           <!-- Urban trains -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-train"></i> Urban trains
+                <span id="urbantrain-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-train"></i> Urban trains
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseUrbanTrains">
                 <button id="btn-enable-urbantrains" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -279,7 +281,7 @@
                       </div>
                       <div class="form-row">
                       <div class="col" for="urbantrainCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="urbantrainCount"></div>
+                      <div class="col"><input type="number" onchange="change('#urbantrain-pill','urbantrainCount')" min="0.2" max="100" step="0.1" class="form-control" id="urbantrainCount"></div>
                         </div>
                     </div>
               </div>
@@ -288,7 +290,7 @@
           <!-- Trains -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-subway"></i> Trains
+                <span id="train-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-subway"></i> Trains
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseTrains">
                 <button id="btn-enable-trains" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -302,7 +304,7 @@
                     </div>
                     <div class="form-row">
                       <div class="col" for="trainCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="trainCount"></div>
+                      <div class="col"><input type="number" onchange="change('#train-pill','trainCount')" min="0.2" max="100" step="0.1" class="form-control" id="trainCount"></div>
                   </div>
                     </div>
               </div>
@@ -311,7 +313,7 @@
           <!-- Ships -->
           <div class="card">
             <div class="card-header">
-                <i class="fa fa-ship"></i> Ships
+                <span id="ship-pill" class="badge badge-pill badge-success"></span> <i class="fa fa-ship"></i> Ships
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseShips">
                 <button id="btn-enable-ships" class="btn btn-secondary btn-sm float-right">Add</button>
               </a>
@@ -325,7 +327,7 @@
                       </div>
                       <div class="form-row">
                       <div class="col" for="shipCount"><small>Vehicle Count</small></div>
-                      <div class="col"><input type="number" min="0.2" max="100" step="0.1" class="form-control" id="shipCount"></div>
+                      <div class="col"><input type="number" onchange="change('#ship-pill','shipCount')" min="0.2" max="100" step="0.1" class="form-control" id="shipCount"></div>
                       </div>
                   </div>
                 </div>
