@@ -5,7 +5,6 @@ $(document).ready(function(){
 	$('[data-toggle="popover"]').popover(); 
   });
 
-
 function openSideMenu(){
   document.getElementById("move").style.marginRight="350px";
   document.getElementById("side-menu").style.width="350px";
@@ -201,7 +200,7 @@ function change(pill, count){
 
 
 // When pressing the "Add" button
-function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount, pill){
+function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount, pill, card){
 
 			// Are we handling a vehicle type or options button?
 			if (vtype != "options") {
@@ -210,35 +209,21 @@ function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount, pill){
 					$(btn).removeClass("btn btn-secondary btn-sm float-right").addClass("btn btn-success btn-sm float-right");
 					$('#'+vtype+'Factor').val(defaultFactor);
 					$('#'+vtype+'Count').val(defaultCount);
-					window[vtype+'Enabled'] = true;
+					var isVisible = $(card).is( ":visible" );
+					
 					$(pill).text(defaultCount);
 				}
 				else {
 					$(btn).text("Add");
 					$(btn).removeClass("btn btn-success btn-sm float-right").addClass("btn btn-secondary btn-sm float-right");
-					window[vtype+'Enabled'] = false;
 					$(pill).text("");
 				}
 				}
-			
-				// we are handling the show options button
-				else {
-				if ($(btn).text() === "Show")   
-					$(btn).text("Hide");	
-				else 
-					$(btn).text("Show");
-				
-				}
-			
-				// Show or hide the panel
-				$('#generate-'+vtype+'-panel').collapse('toggle');
-				
-				// prevent the submission of the form by clicking this button
-				event.preventDefault();
+				//event.preventDefault();
 }
 
 // "Add" buttons
-$('#btn-enable-cars').on('click',function(event){ vehicleAdded(event, this, 'car', 5, 12, '#car-pill'); });
+$('#btn-enable-cars').on('click',function(event){ vehicleAdded(event, this, 'car', 5, 12, '#car-pill', '#collapseCars'); });
 $('#btn-enable-trucks').on('click',function(event){ vehicleAdded(event, this, 'truck', 5, 8, '#truck-pill'); });
 $('#btn-enable-bus').on('click',function(event){ vehicleAdded(event, this, 'bus', 5, 4, '#bus-pill'); });
 $('#btn-enable-motorcycles').on('click',function(event){ vehicleAdded(event, this, 'motorcycle', 2, 4, '#motorcycle-pill'); });
