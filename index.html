@@ -92,13 +92,22 @@
                 <div id="generate-area-text"><i class="fa fa-vector-square"></i> Selected Area</div>
               </a>
             </div>
-            <div class="collapse show" >
-              <div class="container-fluid"><button type="button" id="btn-start-selection" onclick=startSelectionHideButton() class="btn btn-info">Start selection</button>
+            <div class="collapse show">
+       
+<!-- Nav pills -->
+<ul class="nav nav-pills nav-justified" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="btn-hand-default" onclick=defaultHandClicked() data-toggle="pill" href="#home"><i class="far fa-hand-paper"></i></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="btn-start-selection" onclick=startSelectionClicked() data-toggle="pill" href="#menu1"><i class="fas fa-crop-alt"></i></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#menu2"><i class="fas fa-city"></i></a>
+    </li>
+  </ul>  
               <p id="select-area-help" style="display:none;">Click on the map to select opposite corners of a rectangle</p>
-              </div>
-              
-              <div id="collapseSelectedArea" class="card-body">
-              </div>
+              <div id="collapseSelectedArea" class="card-body" style="display:none;"></div>
               <div class="col-sm-12 text-center"> 
               <button type="button" class="btn btn-outline-danger btn-sm" id="reset-selection" style="display: none">Reset selection</button>
             </div>
@@ -113,7 +122,7 @@
               </a>
             </div>
             <div id="collapseCars" class="collapse" >
-              <div class="card-block">
+              
                 <div class="container-fluid">
                   <div class="form-row">
                     <div class="col" for="carFactor"><small>Through Traffic Factor</small></div>
@@ -124,7 +133,7 @@
                     <div class="col"><input type="number" onchange="change('#car-pill','carCount')" min="0.2" max="100" step="0.1" class="form-control" id="carCount"></div>
                 </div>
                   </div>
-              </div>
+              
             </div>
           </div>
           <!-- Trucks -->
