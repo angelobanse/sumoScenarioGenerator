@@ -13,6 +13,8 @@ function openSideMenu(){
   	document.getElementById("searchbtn").style.display="none";
 	document.getElementById("btn-cur-location").style.display="none";
 	document.getElementById("select-area-help").style.display="none";
+	document.getElementById("collapseSelectedArea").style.display="none";
+	document.getElementById("reset-selection").style.display="none";
 	//map.addInteraction(draw);
 }
 
