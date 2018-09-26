@@ -161,6 +161,7 @@ $('#btn-start-selection').on('click', function() {
 	function defaultHandClicked(){
 		vectorsource.clear(); 
 		map.removeInteraction(draw);
+		$('#btn-generate').prop('disabled', true);
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
