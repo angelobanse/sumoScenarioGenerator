@@ -12,7 +12,6 @@ function openSideMenu(){
   document.getElementById("searchstring").style.display="none";
   document.getElementById("searchbtn").style.display="none";
 	document.getElementById("btn-cur-location").style.display="none";
-	document.getElementById("btn-enter-coordinates").style.display="none";
 	document.getElementById("btn-start-selection").style.display="block";
 	document.getElementById("select-area-help").style.display="none";
 	//map.addInteraction(draw);
