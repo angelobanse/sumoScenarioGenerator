@@ -39,7 +39,7 @@
         <a class="navbar-brand">SUMO Scenario Generator</a> 
             <ul class="navbar-nav mx-auto text-center">
                 <li class="nav-item active">
-                    <button type="button" class="btn btn-primary" id="btn-start" tabindex="2" onclick="openSideMenu()">Start here <i class="fa fa-play-circle"></i></button>
+                    <button type="button" class="btn btn-primary" id="btn-start" tabindex="2" onclick="openSideMenu()">Configure & Generate <i class="fa fa-play-circle"></i></button>
                 </li>
             </ul>
             <div class="moveClass" id="move">
@@ -69,7 +69,8 @@
               <input type="text" class="form-control" style="border-color:#6c757d" id="searchstring" autocomplete="off" placeholder="Search" tabindex="1">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit" id="searchbtn" data-toggle="tooltip" title="Search"><i class="fa fa-search"></i></button> 
-                <button class="btn btn-outline-secondary" type="button" id="btn-cur-location" data-toggle="tooltip" title="Use current location"><i class="fa fa-location-arrow"></i></button> 
+                <button class="btn btn-outline-secondary" type="button" id="btn-cur-location" data-toggle="tooltip" title="Use current location"><i class="fa fa-location-arrow"></i></button>
+                <!--<button data-toggle="modal" data-keyboard="true" data-target="#enterCoordinates" class="btn btn-outline-secondary" type="button" id="btn-enter-coordinates" data-toggle="tooltip" title="Enter coordinates"><i class="fas fa-keyboard"></i></button>--> 
               </div>
           </div>
         </form>
@@ -93,8 +94,11 @@
               </a>
             </div>
             <div class="collapse show" >
+              <div class="container-fluid"><button type="button" id="btn-start-selection" onclick=startSelectionHideButton() class="btn btn-info">Start selection</button>
+              <p id="select-area-help" style="display:none;">Click on the map to select opposite corners of a rectangle</p>
+              </div>
+              
               <div id="collapseSelectedArea" class="card-body">
-                No area selected
               </div>
               <div class="col-sm-12 text-center"> 
               <button type="button" class="btn btn-outline-danger btn-sm" id="reset-selection" style="display: none">Reset selection</button>
@@ -445,6 +449,30 @@
       </div>
     </div>
    </div>
+
+
+    <!-- ENTER COORDINATES - Modal screen -->
+  <div class="modal fade" id="enterCoordinates" tabindex='-1'>
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <!-- ENTER COORDINATES Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Enter coordinates</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- ENTER COORDINATES body -->
+          <div class="modal-body">
+            <input type="text">
+          </div>
+          <!-- ENTER COORDINATES footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success">Go to</button>
+          </div>
+        </div>
+      </div>
+     </div>
+    
+
 
    <!-- LOADING - Modal screen -->
   <div class="modal fade" id="loading" data-backdrop="static">

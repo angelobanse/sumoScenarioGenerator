@@ -12,7 +12,10 @@ function openSideMenu(){
   document.getElementById("searchstring").style.display="none";
   document.getElementById("searchbtn").style.display="none";
 	document.getElementById("btn-cur-location").style.display="none";
-	map.addInteraction(draw);
+	document.getElementById("btn-enter-coordinates").style.display="none";
+	document.getElementById("btn-start-selection").style.display="block";
+	document.getElementById("select-area-help").style.display="none";
+	//map.addInteraction(draw);
 }
 
 function closeSideMenu(){
@@ -22,14 +25,16 @@ function closeSideMenu(){
   document.getElementById("searchstring").style.display="block";
   document.getElementById("searchbtn").style.display="block";
   document.getElementById("btn-cur-location").style.display="block";
-	$('#collapseSelectedArea').text('No area selected');
+	$('#collapseSelectedArea').text('');
+	document.getElementById("reset-selection").style.display="none";
+	document.getElementById("select-area-help").style.display="none";
 	map.removeInteraction(draw);
 	vectorsource.clear();
 }
 
 // close SideMenu when pressing <esc> key
 $( document ).on( 'keydown', function ( e ) {
-  if ( e.keyCode === 27 && !$('#help').is(':visible') && !$('#about').is(':visible')) {
+  if ( e.keyCode === 27 && !$('#help').is(':visible') && !$('#about').is(':visible') && !$('#enterCoordinates').is(':visible')) {
 	  closeSideMenu();
   }
 });
@@ -101,6 +106,7 @@ draw.on('drawend', function(event) {
 	var botRight = ol.proj.transform(coords[0][2], 'EPSG:3857', 'EPSG:4326');
 	var botRightLon = botRight[0].toFixed(5);
 	var botRightLat = botRight[1].toFixed(5);
+	map.removeInteraction(draw);
 	displayResetButton();
 
 	if (parseFloat(topLeftLon)<parseFloat(botRightLon)){
@@ -125,6 +131,8 @@ draw.on('drawend', function(event) {
 							'</dl>');
 
 	$('#btn-generate').prop('disabled', false);
+	document.getElementById("btn-start-selection").style.display="none";
+	document.getElementById("select-area-help").style.display="none";
 
 	return bbox=[topLeftLon, botRightLat, botRightLon, topLeftLat];
 	
@@ -135,17 +143,29 @@ draw.on('drawend', function(event) {
 	document.getElementById("reset-selection").style.display="block";
 	}
 
- // What happens when we click on the CLOSE button
+ // What happens when we click on the HIDE button
  $('#btn-close').on('click', function() {
 	closeSideMenu();
 	map.removeInteraction(draw);
 	vectorsource.clear();
     });
 
+// When clicking on the "Start selection" button
+$('#btn-start-selection').on('click', function() {
+	document.getElementById("select-area-help").style.display="block";
+	map.addInteraction(draw);
+	});
+
+	function startSelectionHideButton(){
+		document.getElementById("btn-start-selection").style.display="none";
+	}
+	
 	// When clicking "Reset selection" button
 	$('#reset-selection').on('click', function() {
+	document.getElementById("btn-start-selection").style.display="block";
 	vectorsource.clear(); 
-	$('#collapseSelectedArea').text('No area selected');
+	$('#collapseSelectedArea').text('');
+	map.removeInteraction(draw);
 	document.getElementById("reset-selection").style.display="none";
 	$('#btn-generate').prop('disabled', true);
 	});
