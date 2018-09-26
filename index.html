@@ -39,7 +39,7 @@
         <a class="navbar-brand">SUMO Scenario Generator</a> 
             <ul class="navbar-nav mx-auto text-center">
                 <li class="nav-item active">
-                    <button type="button" class="btn btn-primary" id="btn-start" tabindex="2" onclick="openSideMenu()">Start here <i class="fa fa-play-circle"></i></button>
+                    <button type="button" class="btn btn-primary" id="btn-start" tabindex="2" onclick="openSideMenu()">Configure & Generate <i class="fa fa-play-circle"></i></button>
                 </li>
             </ul>
             <div class="moveClass" id="move">
@@ -93,8 +93,8 @@
               </a>
             </div>
             <div class="collapse show" >
+              <div class="text-center"><button type="button" id="btn-start-selection" onclick=startSelectionHideButton() class="btn btn-info">Start selection</button></div>
               <div id="collapseSelectedArea" class="card-body">
-                No area selected
               </div>
               <div class="col-sm-12 text-center"> 
               <button type="button" class="btn btn-outline-danger btn-sm" id="reset-selection" style="display: none">Reset selection</button>

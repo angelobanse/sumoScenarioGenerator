@@ -12,7 +12,8 @@ function openSideMenu(){
   document.getElementById("searchstring").style.display="none";
   document.getElementById("searchbtn").style.display="none";
 	document.getElementById("btn-cur-location").style.display="none";
-	map.addInteraction(draw);
+	document.getElementById("btn-start-selection").style.display="block";
+	//map.addInteraction(draw);
 }
 
 function closeSideMenu(){
@@ -22,7 +23,7 @@ function closeSideMenu(){
   document.getElementById("searchstring").style.display="block";
   document.getElementById("searchbtn").style.display="block";
   document.getElementById("btn-cur-location").style.display="block";
-	$('#collapseSelectedArea').text('No area selected');
+	$('#collapseSelectedArea').text('');
 	map.removeInteraction(draw);
 	vectorsource.clear();
 }
@@ -125,6 +126,7 @@ draw.on('drawend', function(event) {
 							'</dl>');
 
 	$('#btn-generate').prop('disabled', false);
+	document.getElementById("btn-start-selection").style.display="none";
 
 	return bbox=[topLeftLon, botRightLat, botRightLon, topLeftLat];
 	
@@ -135,17 +137,29 @@ draw.on('drawend', function(event) {
 	document.getElementById("reset-selection").style.display="block";
 	}
 
- // What happens when we click on the CLOSE button
+ // What happens when we click on the HIDE button
  $('#btn-close').on('click', function() {
 	closeSideMenu();
 	map.removeInteraction(draw);
 	vectorsource.clear();
     });
 
+// When clicking on the "Start selection" button
+$('#btn-start-selection').on('click', function() {
+	
+	map.addInteraction(draw);
+	});
+
+	function startSelectionHideButton(){
+		document.getElementById("btn-start-selection").style.display="none";
+	}
+	
 	// When clicking "Reset selection" button
 	$('#reset-selection').on('click', function() {
+	document.getElementById("btn-start-selection").style.display="block";
 	vectorsource.clear(); 
-	$('#collapseSelectedArea').text('No area selected');
+	$('#collapseSelectedArea').text('');
+	map.removeInteraction(draw);
 	document.getElementById("reset-selection").style.display="none";
 	$('#btn-generate').prop('disabled', true);
 	});
