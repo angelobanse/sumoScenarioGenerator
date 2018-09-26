@@ -41,7 +41,8 @@ ShipFactor = sys.argv[23]
 ShipCount = sys.argv[24]
 Duration = sys.argv[25]
 Polygons = sys.argv[26]
-sessionID = sys.argv[27]
+PublicTransport = sys.argv[27]
+sessionID = sys.argv[28]
 
 ## generate osm.net.xml file
 osmMapName = "map_" + sessionID + ".xml"

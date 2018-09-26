@@ -285,6 +285,7 @@ $('#btn-generate').on('click', function() {
 	var scenarioDuration = document.getElementById("scenario-duration").value;
 	if (scenarioDuration ==""){scenarioDuration="3600"};
 	var polygons = document.getElementById("add-polygons").checked;
+	var publicTransport = document.getElementById("public-transport").checked;
 
 
 	var query = ("?1="+left+"&2="+down+"&3="+right+"&4="+up+"&5="+carFactor+"&6="+carCount+"&7="
@@ -292,7 +293,7 @@ $('#btn-generate').on('click', function() {
 	+motorcycleCount+"&13="+bicycleFactor+"&14="+bicycleCount+"&15="+pedestrianFactor
 	+"&16="+pedestrianCount+"&17="+tramFactor+"&18="+tramCount+"&19="+urbantrainFactor
 	+"&20="+urbantrainCount+"&21="+trainFactor+"&22="+trainCount+"&23="+shipFactor+"&24="+shipCount
-	+"&25="+scenarioDuration+"&26="+polygons);
+	+"&25="+scenarioDuration+"&26="+polygons+"&27="+publicTransport);
 
 	window.location.replace("script.php" + query);
 });
