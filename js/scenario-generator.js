@@ -181,25 +181,42 @@ $('#btn-cur-location').on('click', function(event) {
 
 // Search
 function search() {
-    var searchstring = $('#searchstring').val();
+	var searchstring = $('#searchstring').val();
+	searchstring = searchstring.trim();
+	if (searchstring.includes(" ") && searchstring.match(/ /gi).length == 1){
+		var words = searchstring.split(" ");
+			var firstCoord = parseFloat(words[0]);
+			var secondCoord = parseFloat(words[1]);
+			if (firstCoord && secondCoord != "NaN"){
+				chooseAddr(firstCoord, secondCoord);
+			}
+			else {
+				nominatim(searchstring);
+			}
+	}
+	else {
+		nominatim(searchstring);
+	}
+    
+}
 
-    $.getJSON('https://nominatim.openstreetmap.org/search?format=json&limit=5&q='+ searchstring, 
-	      function(data) {
-		  var items = [];
-		  $.each(data, function(key, val) {
-		  items.push("<li><a href='#' onclick='chooseAddr("+val.lat+","+val.lon+");" 
-			     + "return false;'>" + val.display_name + '</a>' 
-			     + "<span class='result-item-type'>(" + val.type + ")</span>" 
-			     + "</li>");
-		  });
-
-		  $('#searchresults').empty();
-		  if (items.length != 0) {
-		      $('<ul/>', { 'class' : 'resultitems', html: items.join('')}).appendTo('#searchresults');
-		  } else {
-		      $('<p>', { html: "<center>No results found</center>" }).appendTo('#searchresults');
-		  }
-	      });
+function nominatim(searchstring){
+	$.getJSON('https://nominatim.openstreetmap.org/search?format=json&limit=5&q='+ searchstring, 
+	function(data) {
+	var items = [];
+	$.each(data, function(key, val) {
+	items.push("<li><a href='#' onclick='chooseAddr("+val.lat+","+val.lon+");" 
+		   + "return false;'>" + val.display_name + '</a>' 
+		   + "<span class='result-item-type'>(" + val.type + ")</span>" 
+		   + "</li>");
+	});
+	$('#searchresults').empty();
+	if (items.length != 0) {
+		$('<ul/>', { 'class' : 'resultitems', html: items.join('')}).appendTo('#searchresults');
+	} else {
+		$('<p>', { html: "<center>No results found</center>" }).appendTo('#searchresults');
+	}
+	}); 
 }
 
 
