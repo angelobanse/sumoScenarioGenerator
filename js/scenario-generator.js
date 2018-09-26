@@ -6,11 +6,11 @@ $(document).ready(function(){
   });
 
 function openSideMenu(){
-  document.getElementById("move").style.marginRight="350px";
-  document.getElementById("side-menu").style.width="350px";
-  document.getElementById("btn-start").style.display="none";
-  document.getElementById("searchstring").style.display="none";
-  document.getElementById("searchbtn").style.display="none";
+  	document.getElementById("move").style.marginRight="350px";
+  	document.getElementById("side-menu").style.width="350px";
+  	document.getElementById("btn-start").style.display="none";
+  	document.getElementById("searchstring").style.display="none";
+  	document.getElementById("searchbtn").style.display="none";
 	document.getElementById("btn-cur-location").style.display="none";
 	document.getElementById("btn-start-selection").style.display="block";
 	document.getElementById("select-area-help").style.display="none";
@@ -18,13 +18,13 @@ function openSideMenu(){
 }
 
 function closeSideMenu(){
-  document.getElementById("move").style.marginRight="0";
-  document.getElementById("side-menu").style.width="0";
-  document.getElementById("btn-start").style.display="block";
-  document.getElementById("searchstring").style.display="block";
-  document.getElementById("searchbtn").style.display="block";
-  document.getElementById("btn-cur-location").style.display="block";
-	$('#collapseSelectedArea').text('');
+  	document.getElementById("move").style.marginRight="0";
+  	document.getElementById("side-menu").style.width="0";
+  	document.getElementById("btn-start").style.display="block";
+  	document.getElementById("searchstring").style.display="block";
+  	document.getElementById("searchbtn").style.display="block";
+  	document.getElementById("btn-cur-location").style.display="block";
+  	$('#collapseSelectedArea').text('');
 	document.getElementById("reset-selection").style.display="none";
 	document.getElementById("select-area-help").style.display="none";
 	map.removeInteraction(draw);
@@ -34,7 +34,7 @@ function closeSideMenu(){
 
 // close SideMenu when pressing <esc> key
 $( document ).on( 'keydown', function ( e ) {
-  if ( e.keyCode === 27 && !$('#help').is(':visible') && !$('#about').is(':visible') && !$('#enterCoordinates').is(':visible')) {
+  if ( e.keyCode === 27 && !$('#help').is(':visible') && !$('#about').is(':visible')) {
 	  closeSideMenu();
   }
 });
