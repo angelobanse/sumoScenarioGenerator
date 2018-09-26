@@ -30,6 +30,7 @@ function closeSideMenu(){
 	document.getElementById("select-area-help").style.display="none";
 	map.removeInteraction(draw);
 	vectorsource.clear();
+	document.getElementById("btn-start-selection").style.display="block";
 }
 
 // close SideMenu when pressing <esc> key
