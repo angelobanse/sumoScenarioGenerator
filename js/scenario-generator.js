@@ -137,7 +137,6 @@ draw.on('drawend', function(event) {
 	return bbox=[topLeftLon, botRightLat, botRightLon, topLeftLat];
 	
 		});
-		
 
 	function displayResetButton() {
 	document.getElementById("reset-selection").style.display="block";
@@ -197,7 +196,7 @@ $('#btn-start-selection').on('click', function() {
 	}
 	
 	// When clicking "Reset selection" button
-	$('#reset-selection').on('click', function() {
+	$('#reset-selection-btn').on('click', function() {
 	document.getElementById("btn-start-selection").style.display="block";
 	vectorsource.clear(); 
 	$('#collapseSelectedArea').text('');
