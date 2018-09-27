@@ -161,7 +161,10 @@ $('#btn-start-selection').on('click', function() {
 	}
 
 	function defaultHandClicked(){
-		vectorsource.clear(); 
+		vectorsource.clear();
+		$("#btn-hand-default").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
+		$("#btn-boundaries").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		$("#btn-start-selection").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		map.removeInteraction(draw);
 		$('#btn-generate').prop('disabled', true);
 		document.getElementById("select-area-help").style.display="none";
@@ -172,6 +175,9 @@ $('#btn-start-selection').on('click', function() {
 	function startSelectionClicked(){
 		vectorsource.clear(); 
 		map.removeInteraction(draw);
+		$("#btn-start-selection").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
+		$("#btn-hand-default").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		$("#btn-boundaries").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		$('#btn-generate').prop('disabled', true);
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
@@ -179,14 +185,15 @@ $('#btn-start-selection').on('click', function() {
 	}
 
 	function boundariesClicked(){
+		$("#btn-hand-default").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		$("#btn-boundaries").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
+		$("#btn-start-selection").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		vectorsource.clear(); 
 		map.removeInteraction(draw);
 		$('#btn-generate').prop('disabled', true);
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
-		document.getElementById("btn-boundaries").addClass("btn btn-secondary");
-		document.getElementById("btn-hand-default").addClass("btn btn-outline-secondary");
 	}
 	
 	// When clicking "Reset selection" button
@@ -194,6 +201,8 @@ $('#btn-start-selection').on('click', function() {
 	document.getElementById("btn-start-selection").style.display="block";
 	vectorsource.clear(); 
 	$('#collapseSelectedArea').text('');
+	document.getElementById("select-area-help").style.display="block";
+	document.getElementById("collapseSelectedArea").style.display="none";
 	//map.removeInteraction(draw);
 	map.addInteraction(draw);
 	document.getElementById("reset-selection").style.display="none";
