@@ -169,6 +169,15 @@ $('#btn-start-selection').on('click', function() {
 		document.getElementById("reset-selection").style.display="none";
 	}
 
+	function startSelectionClicked(){
+		vectorsource.clear(); 
+		map.removeInteraction(draw);
+		$('#btn-generate').prop('disabled', true);
+		document.getElementById("select-area-help").style.display="none";
+		document.getElementById("collapseSelectedArea").style.display="none";
+		document.getElementById("reset-selection").style.display="none";
+	}
+
 	function boundariesClicked(){
 		vectorsource.clear(); 
 		map.removeInteraction(draw);
@@ -176,6 +185,8 @@ $('#btn-start-selection').on('click', function() {
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
+		document.getElementById("btn-boundaries").addClass("btn btn-secondary");
+		document.getElementById("btn-hand-default").addClass("btn btn-outline-secondary");
 	}
 	
 	// When clicking "Reset selection" button
