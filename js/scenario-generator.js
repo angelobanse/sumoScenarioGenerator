@@ -12,8 +12,9 @@ function openSideMenu(){
   	document.getElementById("searchstring").style.display="none";
   	document.getElementById("searchbtn").style.display="none";
 	document.getElementById("btn-cur-location").style.display="none";
-	document.getElementById("btn-start-selection").style.display="block";
 	document.getElementById("select-area-help").style.display="none";
+	document.getElementById("collapseSelectedArea").style.display="none";
+	document.getElementById("reset-selection").style.display="none";
 	//map.addInteraction(draw);
 }
 
@@ -29,7 +30,6 @@ function closeSideMenu(){
 	document.getElementById("select-area-help").style.display="none";
 	map.removeInteraction(draw);
 	vectorsource.clear();
-	document.getElementById("btn-start-selection").style.display="block";
 }
 
 // close SideMenu when pressing <esc> key
@@ -125,13 +125,13 @@ draw.on('drawend', function(event) {
 		topLeftLat = topLeftLatAUX;
 	}
 
-		
+	document.getElementById("collapseSelectedArea").style.display="block";
  	$('#collapseSelectedArea').html('<i class="fas fa-arrows-alt-h"></i> Longitude<dd>' + topLeftLon  + ' - ' + botRightLon  + ' </dd>' + 
 				      '<i class="fas fa-arrows-alt-v"></i> Latitude<dd>' + topLeftLat  + ' - ' + botRightLat  +
 							'</dl>');
 
 	$('#btn-generate').prop('disabled', false);
-	document.getElementById("btn-start-selection").style.display="none";
+	
 	document.getElementById("select-area-help").style.display="none";
 
 	return bbox=[topLeftLon, botRightLat, botRightLon, topLeftLat];
@@ -159,13 +159,52 @@ $('#btn-start-selection').on('click', function() {
 	function startSelectionHideButton(){
 		document.getElementById("btn-start-selection").style.display="none";
 	}
+
+	function defaultHandClicked(){
+		vectorsource.clear();
+		$("#btn-hand-default").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
+		$("#btn-boundaries").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		$("#btn-start-selection").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		map.removeInteraction(draw);
+		$('#btn-generate').prop('disabled', true);
+		document.getElementById("select-area-help").style.display="none";
+		document.getElementById("collapseSelectedArea").style.display="none";
+		document.getElementById("reset-selection").style.display="none";
+	}
+
+	function startSelectionClicked(){
+		vectorsource.clear(); 
+		map.removeInteraction(draw);
+		$("#btn-start-selection").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
+		$("#btn-hand-default").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		$("#btn-boundaries").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		$('#btn-generate').prop('disabled', true);
+		document.getElementById("select-area-help").style.display="none";
+		document.getElementById("collapseSelectedArea").style.display="none";
+		document.getElementById("reset-selection").style.display="none";
+	}
+
+	function boundariesClicked(){
+		$("#btn-hand-default").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		$("#btn-boundaries").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
+		$("#btn-start-selection").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
+		vectorsource.clear(); 
+		map.removeInteraction(draw);
+		$('#btn-generate').prop('disabled', true);
+		document.getElementById("select-area-help").style.display="none";
+		document.getElementById("collapseSelectedArea").style.display="none";
+		document.getElementById("reset-selection").style.display="none";
+	}
 	
 	// When clicking "Reset selection" button
 	$('#reset-selection').on('click', function() {
 	document.getElementById("btn-start-selection").style.display="block";
 	vectorsource.clear(); 
 	$('#collapseSelectedArea').text('');
-	map.removeInteraction(draw);
+	document.getElementById("select-area-help").style.display="block";
+	document.getElementById("collapseSelectedArea").style.display="none";
+	//map.removeInteraction(draw);
+	map.addInteraction(draw);
 	document.getElementById("reset-selection").style.display="none";
 	$('#btn-generate').prop('disabled', true);
 	});
