@@ -128,8 +128,7 @@ draw.on('drawend', function(event) {
 
 	document.getElementById("collapseSelectedArea").style.display="block";
  	$('#collapseSelectedArea').html('<i class="fas fa-arrows-alt-h"></i> Longitude<dd>' + topLeftLon  + ' - ' + botRightLon  + ' </dd>' + 
-				      '<i class="fas fa-arrows-alt-v"></i> Latitude<dd>' + topLeftLat  + ' - ' + botRightLat  +
-							'</dl>');
+				      '<i class="fas fa-arrows-alt-v"></i> Latitude<dd>' + topLeftLat  + ' - ' + botRightLat + ' </dd>');
 
 	$('#btn-generate').prop('disabled', false);
 	
