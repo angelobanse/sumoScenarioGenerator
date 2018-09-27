@@ -15,6 +15,7 @@ function openSideMenu(){
 	document.getElementById("select-area-help").style.display="none";
 	document.getElementById("collapseSelectedArea").style.display="none";
 	document.getElementById("reset-selection").style.display="none";
+	defaultHandClicked();
 	//map.addInteraction(draw);
 }
 
