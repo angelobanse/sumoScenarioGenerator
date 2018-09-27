@@ -62,6 +62,13 @@
     margin-left:1px;
 }
 
+.side-nav .tool-btn{
+    position: absolute;
+    top: 16px;
+    left: 100px;
+    margin-left:1px;
+}
+
 .loader {
     margin: auto;
     border: 16px solid #f8f9fa;
