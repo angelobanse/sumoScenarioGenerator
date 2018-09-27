@@ -79,7 +79,13 @@
     <!-- SIDE MENU -->
       <div id="side-menu" class="side-nav">
           <!-- "Generate" button -->
+          
           <button id="btn-generate" class="btn btn-success btn-generate" disabled>Generate</button>
+          <div id="tool-buttons" class="btn-group btn-sm tool-btn">
+              <button type="button" id="btn-hand-default" onclick=defaultHandClicked() class="btn btn-secondary btn-sm"><i class="far fa-hand-paper"></i></button>
+              <button type="button" id="btn-start-selection" onclick=startSelectionClicked() class="btn btn-outline-secondary btn-sm"><i class="fas fa-crop-alt"></i></button>
+              <button type="button" id="btn-boundaries" onclick=boundariesClicked() class="btn btn-outline-secondary btn-sm"><i class="fas fa-city"></i></button>
+            </div>
         
         <a href="#" class="btn-close" onclick=closeSideMenu()><i class="fas fa-angle-right"></i></a>
        
@@ -94,11 +100,7 @@
             </div>
             <div class="collapse show">
 
-                <div class="btn-group btn-lg">
-                    <button type="button" id="btn-hand-default" onclick=defaultHandClicked() class="btn btn-secondary"><i class="far fa-hand-paper"></i></button>
-                    <button type="button" id="btn-start-selection" onclick=startSelectionClicked() class="btn btn-outline-secondary"><i class="fas fa-crop-alt"></i></button>
-                    <button type="button" id="btn-boundaries" onclick=boundariesClicked() class="btn btn-outline-secondary"><i class="fas fa-city"></i></button>
-                  </div>
+                
 
               <div id="select-area-help" class="card-body" style="display:none;">Click on the map to select opposite corners of a rectangle</div>
               <div id="collapseSelectedArea" class="card-body" style="display:none;"></div>
@@ -433,7 +435,7 @@
           <p class="text-center"><img src="images/sumo-icon.png" alt="SUMO Logo" height=70px style="pointer-events: none;"></p>
           <u>S</u>imulation of <u>U</u>rban <u>MO</u>bility (SUMO) Scenario Generator 
           <br>
-          <kbd>version 0.1</kbd>
+          <kbd>version 0.1.09.27</kbd>
           <br><br>
           This web application generates and downloads the necessary files to start a basic road traffic simulation in SUMO.
           <br><br>
