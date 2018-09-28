@@ -82,7 +82,7 @@
           
           <button id="btn-generate" class="btn btn-success btn-generate" disabled>Generate</button>
           <div id="tool-buttons" class="btn-group btn-sm tool-btn">
-              <button type="button" id="btn-hand-default" onclick=defaultHandClicked() class="btn btn-secondary btn-sm" data-toggle="tooltip" title="Drag the map"><i class="far fa-hand-paper"></i></button>
+              <button type="button" id="btn-hand-default" onclick=defaultHandClicked() class="btn btn-secondary btn-sm" data-toggle="tooltip" title="Drag the map"><i class="fas fa-arrows-alt"></i></button>
               <button type="button" id="btn-start-selection" onclick=startSelectionClicked() class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="Select a rectangle"><i class="fas fa-crop-alt"></i></button>
               <button type="button" id="btn-boundaries" onclick=boundariesClicked() class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="Select by OSM ID"><i class="fas fa-city"></i></button>
             </div>
@@ -100,6 +100,9 @@
             </div>
             <div class="collapse show">
               <div id="select-area-help" class="card-body" style="display:none;">Click on the map to select opposite corners of a rectangle</div>
+              <div id="id-search-area" class="card-body" style="display:none;">
+                <form role="form" onsubmit="searchID();return false;">
+                <input type="text" class="form-control" placeholder="enter ID and press <ENTER>"></form></div>
               <div id="collapseSelectedArea" class="card-body" style="display:none;"></div>
               <div id="reset-selection" class="card-body" style="display:none;"><button type="button" id="reset-selection-btn" class="btn btn-outline-danger btn-sm">Reset selection</button></div>
           </div>
@@ -466,6 +469,29 @@
       </div>
     </div>
    </div>
+
+
+   <!-- BOUNDARIES - Modal screen -->
+  <div class="modal fade" id="boundaries" tabindex='-1'>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- BOUNDARIES Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Select by OSM ID</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- BOUNDARIES body -->
+        <div class="modal-body">
+          <input type="text" placeholder="enter ID">
+        </div>
+        <!-- ABOUT footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Select</button>
+        </div>
+      </div>
+    </div>
+   </div>
+
 
   <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

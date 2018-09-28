@@ -6,6 +6,7 @@ $(document).ready(function(){
   });
 
 function openSideMenu(){
+	document.getElementById("searchresults").style.display="none";
   	document.getElementById("move").style.marginRight="350px";
   	document.getElementById("side-menu").style.width="350px";
   	document.getElementById("btn-start").style.display="none";
@@ -20,6 +21,8 @@ function openSideMenu(){
 }
 
 function closeSideMenu(){
+	document.getElementById("searchresults").style.display="block";
+	document.getElementById("map").style.cursor = "default";
   	document.getElementById("move").style.marginRight="0";
   	document.getElementById("side-menu").style.width="0";
   	document.getElementById("btn-start").style.display="block";
@@ -32,6 +35,11 @@ function closeSideMenu(){
 	map.removeInteraction(draw);
 	vectorsource.clear();
 }
+
+function searchID(){
+	
+}
+
 
 // close SideMenu when pressing <esc> key
 $( document ).on( 'keydown', function ( e ) {
@@ -169,9 +177,12 @@ $('#btn-start-selection').on('click', function() {
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
+		document.getElementById("map").style.cursor = "move";
+		document.getElementById("id-search-area").style.display="none";
 	}
 
 	function startSelectionClicked(){
+		document.getElementById("map").style.cursor = "default";
 		vectorsource.clear(); 
 		map.removeInteraction(draw);
 		$("#btn-start-selection").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
@@ -181,9 +192,13 @@ $('#btn-start-selection').on('click', function() {
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
+		document.getElementById("id-search-area").style.display="none";
 	}
 
 	function boundariesClicked(){
+		document.getElementById("map").style.cursor = "default";
+		//$('#boundaries').modal('show');
+		document.getElementById("id-search-area").style.display="block";
 		$("#btn-hand-default").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		$("#btn-boundaries").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
 		$("#btn-start-selection").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
