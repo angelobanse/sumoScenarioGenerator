@@ -93,12 +93,13 @@
           
           <!-- Selected Area -->
           <div class="card">
-            <div class="card-header">
+            <div class="card-header" data-toggle="collapse" data-target="#collapseArea">
               <a class="card-link">
                 <div id="generate-area-text"><i class="fa fa-vector-square"></i> Selected Area</div>
               </a>
             </div>
-            <div class="collapse show">
+            <div class="collapse show" id="collapseArea">
+              <div id="select-area-start" class="card-body" style="display:none;">No area selected yet. <br>Draw a rectangle (click on <i class="fas fa-crop-alt"></i>) or enter a OSM ID (click on <i class="fas fa-city"></i>)</div>
               <div id="select-area-help" class="card-body" style="display:none;">Click on the map to select opposite corners of a rectangle</div>
               <div id="id-search-area" class="card-body" style="display:none;">
                 <form role="form" onsubmit="searchID();return false;">

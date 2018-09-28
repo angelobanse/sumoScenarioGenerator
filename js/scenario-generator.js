@@ -169,6 +169,7 @@ $('#btn-start-selection').on('click', function() {
 
 	function defaultHandClicked(){
 		vectorsource.clear();
+		document.getElementById("select-area-start").style.display="block";
 		$("#btn-hand-default").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
 		$("#btn-boundaries").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		$("#btn-start-selection").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
@@ -182,6 +183,7 @@ $('#btn-start-selection').on('click', function() {
 	}
 
 	function startSelectionClicked(){
+		document.getElementById("select-area-start").style.display="none";
 		document.getElementById("map").style.cursor = "default";
 		vectorsource.clear(); 
 		map.removeInteraction(draw);
@@ -196,6 +198,7 @@ $('#btn-start-selection').on('click', function() {
 	}
 
 	function boundariesClicked(){
+		document.getElementById("select-area-start").style.display="none";
 		document.getElementById("map").style.cursor = "default";
 		//$('#boundaries').modal('show');
 		document.getElementById("id-search-area").style.display="block";
@@ -292,7 +295,6 @@ function change(pill, count){
 // When pressing the "Add" button
 function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount, pill, card){
 
-			// Are we handling a vehicle type or options button?
 			if (vtype != "options") {
 				if ($(btn).text() === "Add") {
 					$(btn).text("Added");
