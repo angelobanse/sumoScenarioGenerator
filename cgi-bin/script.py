@@ -77,6 +77,15 @@ if Polygons == "true":
     polyconvertCMD = 'polyconvert --osm ' + osmNetName + ' -o ' + osmPolyName
     os.system(polyconvertCMD)
 
+## generate trips files
+tripsName = "myTrips.trips.xml"
+randomTripsCMD = 'randomTrips.py -n ' + osmNetName + ' -o ' + tripsName
+os.system(randomTripsCMD)
+
+## DUAROUTER
+
+
+
 timeNow = datetime.datetime.now()
 
 ## generate info.txt file
