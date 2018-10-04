@@ -14,6 +14,7 @@ except ImportError:
     # for python3
     import http.client as httplib
     import urllib.parse as urlparse
+# import py_compile
 
 Left = sys.argv[1]
 Down = sys.argv[2]
@@ -105,6 +106,9 @@ if os.path.exists(infoFileName):
      os.remove(osmPolyName)
 else:
  print("The file does not exist")
+
+## compile this script and generate a .pyc file for faster execution
+# py_compile.compile('script.py')
 
 ## NEED TEST
 #finalURL = "final.php" + "?id=" + sessionID
