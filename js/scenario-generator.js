@@ -37,7 +37,8 @@ function closeSideMenu(){
 }
 
 function searchID(){
-	console.log("it works!");
+	var urlOSMrelation = "https://www.openstreetmap.org/relation/" + document.getElementById("relation-input").value;
+	window.open(urlOSMrelation);
 }
 
 
@@ -263,7 +264,8 @@ function nominatim(searchstring){
 	$.each(data, function(key, val) {
 	items.push("<li><a href='#' onclick='chooseAddr("+val.lat+","+val.lon+");" 
 		   + "return false;'>" + val.display_name + '</a>' 
-		   + "<span class='result-item-type'>(" + val.type + ")</span>" 
+		   + "<span class='result-item-type'> (" + val.type + ")</span>"
+		   + '<span class="osm-relation-id">' + ' ID:' + val.osm_id + '</span>' 
 		   + "</li>");
 	});
 	$('#searchresults').empty();
