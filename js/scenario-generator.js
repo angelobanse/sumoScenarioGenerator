@@ -37,8 +37,10 @@ function closeSideMenu(){
 }
 
 function searchID(){
+	document.getElementById("view-in-osm").style.display="block";
 	var urlOSMrelation = "https://www.openstreetmap.org/relation/" + document.getElementById("relation-input").value;
-	window.open(urlOSMrelation);
+	var textViewRelation = ' <a href=' + urlOSMrelation +' target="_blank">View selection in OpenStreetMap <i class="fas fa-external-link-alt"></i></a> ';
+    document.getElementById("view-in-osm").innerHTML = textViewRelation;
 }
 
 
