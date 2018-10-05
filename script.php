@@ -41,13 +41,14 @@ $ShipCount = $_GET['24'];
 $Duration = $_GET['25'];
 $Polygons = $_GET['26'];
 $PublicTransport = $_GET['27'];
+$LeftHand = $_GET['28'];
 
 $sessionID = strval(rand(10, 99)) . dechex(time()) . strval(rand(10, 10000));
 
 $cmd = "python cgi-bin/script.py ".$Left." ".$Down." ".$Right." ".$Up." ".$CarFactor." ".$CarCount." ".$TruckFactor." ".$TruckCount
 ." ".$BusFactor." ".$BusCount." ".$MotorcycleFactor." ".$MotorcycleCount." ".$BicycleFactor." ".$BicycleCount
 ." ".$PedestrianFactor." ".$PedestrianCount." ".$TramFactor." ".$TramCount." ".$UrbanTrainFactor." ".$UrbanTrainCount
-." ".$TrainFactor." ".$TrainCount." ".$ShipFactor." ".$ShipCount." ".$Duration." ".$Polygons." ".$PublicTransport." ".$sessionID;
+." ".$TrainFactor." ".$TrainCount." ".$ShipFactor." ".$ShipCount." ".$Duration." ".$Polygons." ".$PublicTransport." ".$LeftHand." ".$sessionID;
 shell_exec($cmd);
 header("Location: final.php?id=".$sessionID);
 }

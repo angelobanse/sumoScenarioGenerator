@@ -43,7 +43,8 @@ ShipCount = sys.argv[24]
 Duration = sys.argv[25]
 Polygons = sys.argv[26]
 PublicTransport = sys.argv[27]
-sessionID = sys.argv[28]
+LeftHand = sys.argv[28]
+sessionID = sys.argv[29]
 
 ## generate osm.net.xml file
 osmMapName = "map_" + sessionID + ".xml"
@@ -56,7 +57,10 @@ osmMap = open(os.path.join(os.getcwd(), "%s" % (osmMapName)), "w")
 osmMap.write(r.read())
 osmMap.close()
 conn.close()
-netconvertCMD = 'netconvert --osm ' + osmMapName + ' -o ' + osmNetName
+if LeftHand == "true":
+    netconvertCMD = 'netconvert --osm ' + osmMapName + ' -o ' + osmNetName + ' --lefthand'
+else:
+    netconvertCMD = 'netconvert --osm ' + osmMapName + ' -o ' + osmNetName
 os.system(netconvertCMD)
 
 ## generate osm.view.xml file
