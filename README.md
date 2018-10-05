@@ -1,3 +1,6 @@
+[![GitHub license](https://img.shields.io/github/license/angelobanse/sumoScenarioGenerator.svg)](https://github.com/angelobanse/sumoScenarioGenerator/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/angelobanse/sumoScenarioGenerator.svg)](https://github.com/angelobanse/sumoScenarioGenerator/issues)
+
 SUMO Scenario Generator
 =======================
 
