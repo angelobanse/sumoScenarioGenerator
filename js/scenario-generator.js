@@ -32,6 +32,7 @@ function closeSideMenu(){
   	$('#collapseSelectedArea').text('');
 	document.getElementById("reset-selection").style.display="none";
 	document.getElementById("select-area-help").style.display="none";
+	document.getElementById("view-in-osm").style.display="none";
 	map.removeInteraction(draw);
 	vectorsource.clear();
 }
@@ -183,6 +184,8 @@ $('#btn-start-selection').on('click', function() {
 		document.getElementById("reset-selection").style.display="none";
 		document.getElementById("map").style.cursor = "move";
 		document.getElementById("id-search-area").style.display="none";
+		document.getElementById("view-in-osm").style.display="none";
+		$('#relation-input').val("");
 	}
 
 	function startSelectionClicked(){
@@ -198,6 +201,8 @@ $('#btn-start-selection').on('click', function() {
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
 		document.getElementById("id-search-area").style.display="none";
+		document.getElementById("view-in-osm").style.display="none";
+		$('#relation-input').val("");
 	}
 
 	function boundariesClicked(){
