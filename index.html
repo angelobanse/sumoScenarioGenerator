@@ -103,7 +103,8 @@
               <div id="select-area-help" class="card-body" style="display:none;">Click on the map to select opposite corners of a rectangle</div>
               <div id="id-search-area" class="card-body" style="display:none;">
                 <form role="form" onsubmit="searchID();return false;">
-                <input type="text" class="form-control" placeholder="insert relation ID and press <ENTER>"></form></div>
+                <input type="text" class="form-control" id="relation-input" placeholder="insert relation ID and press <ENTER>"></form></div>
+                  <div id="view-in-osm" class="card-body" style="display:none;"></div>
               <div id="collapseSelectedArea" class="card-body" style="display:none;"></div>
               <div id="reset-selection" class="card-body" style="display:none;"><button type="button" id="reset-selection-btn" class="btn btn-outline-danger btn-sm">Reset selection</button></div>
           </div>
@@ -401,7 +402,7 @@
         <br><br>
         Click on the <span class="badge badge-primary">Continue <i class="fa fa-play-circle"></i></span> button
         <br><br>
-        Select an Area of the map by drawing a rectangle (click on <i class="fas fa-crop-alt"></i>) or by searching a OSM ID (click on <i class="fas fa-city"></i>)
+        Select an Area of the map by drawing a rectangle (click on <i class="fas fa-crop-alt"></i>) or by entering a OSM relation ID (click on <i class="fas fa-city"></i>)
         <br><br>
         <span class="badge badge-secondary">Add</span> the vehicles you want and configure the <a href="#" data-toggle="popover" data-content="The Through Traffic Factor defines how many times it is more likely for an edge at the boundary of the simulation area being chosen compared to an edge entirely located inside the simulation area" data-placement="top" data-trigger="hover"><mark>Through Traffic Factor</mark></a> 
         and the <a href="#" data-toggle="popover" data-content="The Vehicle Count parameter defines how many vehicles are generated per hour and lane-kilometer" data-placement="top" data-trigger="hover"><mark>Vehicle Count</mark></a> for each 

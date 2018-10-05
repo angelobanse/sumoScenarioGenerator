@@ -32,12 +32,16 @@ function closeSideMenu(){
   	$('#collapseSelectedArea').text('');
 	document.getElementById("reset-selection").style.display="none";
 	document.getElementById("select-area-help").style.display="none";
+	document.getElementById("view-in-osm").style.display="none";
 	map.removeInteraction(draw);
 	vectorsource.clear();
 }
 
 function searchID(){
-	console.log("it works!");
+	document.getElementById("view-in-osm").style.display="block";
+	var urlOSMrelation = "https://www.openstreetmap.org/relation/" + document.getElementById("relation-input").value;
+	var textViewRelation = ' <a href=' + urlOSMrelation +' target="_blank">View selection in OpenStreetMap <i class="fas fa-external-link-alt"></i></a> ';
+    document.getElementById("view-in-osm").innerHTML = textViewRelation;
 }
 
 
@@ -180,6 +184,8 @@ $('#btn-start-selection').on('click', function() {
 		document.getElementById("reset-selection").style.display="none";
 		document.getElementById("map").style.cursor = "move";
 		document.getElementById("id-search-area").style.display="none";
+		document.getElementById("view-in-osm").style.display="none";
+		$('#relation-input').val("");
 	}
 
 	function startSelectionClicked(){
@@ -195,6 +201,8 @@ $('#btn-start-selection').on('click', function() {
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
 		document.getElementById("id-search-area").style.display="none";
+		document.getElementById("view-in-osm").style.display="none";
+		$('#relation-input').val("");
 	}
 
 	function boundariesClicked(){
@@ -263,7 +271,8 @@ function nominatim(searchstring){
 	$.each(data, function(key, val) {
 	items.push("<li><a href='#' onclick='chooseAddr("+val.lat+","+val.lon+");" 
 		   + "return false;'>" + val.display_name + '</a>' 
-		   + "<span class='result-item-type'>(" + val.type + ")</span>" 
+		   + "<span class='result-item-type'> (" + val.type + ")</span>"
+		   + '<span class="osm-relation-id">' + ' ID:' + val.osm_id + '</span>' 
 		   + "</li>");
 	});
 	$('#searchresults').empty();
