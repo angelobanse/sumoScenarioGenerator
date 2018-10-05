@@ -93,6 +93,7 @@
   
   input:invalid {
     border: 2px solid red;
+    background-color: #F2DAD9;
   }
 
 .card-header{

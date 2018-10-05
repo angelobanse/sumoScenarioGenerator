@@ -308,6 +308,8 @@ function vehicleAdded(event, btn, vtype, defaultFactor, defaultCount, pill, card
 				else {
 					$(btn).text("Add");
 					$(btn).removeClass("btn btn-success btn-sm float-right").addClass("btn btn-secondary btn-sm float-right");
+					$('#'+vtype+'Factor').val("");
+					$('#'+vtype+'Count').val("");
 					$(pill).text("");
 				}
 				}
