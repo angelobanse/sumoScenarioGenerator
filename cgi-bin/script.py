@@ -57,10 +57,12 @@ osmMap = open(os.path.join(os.getcwd(), "%s" % (osmMapName)), "w")
 osmMap.write(r.read())
 osmMap.close()
 conn.close()
+netconvertCMD = 'netconvert --osm ' + osmMapName + ' -o ' + osmNetName
+
 if LeftHand == "true":
-    netconvertCMD = 'netconvert --osm ' + osmMapName + ' -o ' + osmNetName + ' --lefthand'
+    netconvertCMD += ' --lefthand'
 else:
-    netconvertCMD = 'netconvert --osm ' + osmMapName + ' -o ' + osmNetName
+    pass
 os.system(netconvertCMD)
 
 ## generate osm.view.xml file
