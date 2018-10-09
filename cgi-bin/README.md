@@ -22,3 +22,23 @@ Set the symbolic link ```sudo ln -s ../mods-available/cgi.load to the etc/apache
 
 
 Make sure the scripts are executable: ```sudo chmod +x```
+
+## script.py
+
+## deleter.py
+
+User-generated `.ZIP files` are only being kept 24 hours on the server and then deleted.
+
+The `deleter.py` script is in charge of deleting `.ZIP files` according to their *last modified* dates (default case in the script being 24 hours) to prevent filling the server.
+
+`deleter.py` script must be invoked by a *Cron job*. Please verify that the specified *Path* under the `directory` variable (in the script) is correct. 
+
+To create a *Cron job* enter `crontab -e` into the console.
+
+An example *Cron job* that runs every 24 hours (exactly at midnight) looks like this:
+```
+0 0 * * * /usr/bin/python /home/public_html/cgi-bin/deleter.py
+```
+:warning: Please verify YOUR specific *PATH*
+
+:warning: Make sure the script has the necessary permission (755)
