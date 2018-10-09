@@ -1,4 +1,3 @@
-# Olaf Angelo Banse Bueno - 2018
 #!/usr/bin/python 
 import os
 import zipfile
