@@ -24,6 +24,8 @@ It's supposed to be implemented on a web server, but it can run locally if SUMO 
   <img alt="SUMO Scenario Generator - user interface" src="https://i.imgur.com/f8xPzLI.png">
 </p>
 
+This "Scenario Generator" is intended to be a test for the new [OSM WebWizard](http://htmlpreview.github.io/?https://github.com/eclipse/sumo/blob/master/tools/webWizard/index.html).
+
 Bugs
 ----
 
