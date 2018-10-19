@@ -49,8 +49,8 @@
 
 .side-nav .btn-close{
     position: absolute;
-    top: 0px;
-    right: 22px;
+    top: 5px;
+    right: 5px;
     font-size: 45px;
     margin-left: 50px;
 }

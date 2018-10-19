@@ -7,8 +7,8 @@ $(document).ready(function(){
 
 function openSideMenu(){
 	document.getElementById("searchresults").style.display="none";
-  	document.getElementById("move").style.marginRight="350px";
-  	document.getElementById("side-menu").style.width="350px";
+  	document.getElementById("move").style.marginRight="300px";
+  	document.getElementById("side-menu").style.width="300px";
   	document.getElementById("btn-start").style.display="none";
   	document.getElementById("searchstring").style.display="none";
   	document.getElementById("searchbtn").style.display="none";
@@ -40,7 +40,7 @@ function closeSideMenu(){
 function searchID(){
 	document.getElementById("view-in-osm").style.display="block";
 	var urlOSMrelation = "https://www.openstreetmap.org/relation/" + document.getElementById("relation-input").value;
-	var textViewRelation = ' <a href=' + urlOSMrelation +' target="_blank">View selection in OpenStreetMap <i class="fas fa-external-link-alt"></i></a> ';
+	var textViewRelation = '<small><a href=' + urlOSMrelation +' target="_blank">View selection in OpenStreetMap <i class="fas fa-external-link-alt"></i></a></small>';
     document.getElementById("view-in-osm").innerHTML = textViewRelation;
 }
 
