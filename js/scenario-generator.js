@@ -7,8 +7,8 @@ $(document).ready(function(){
 
 function openSideMenu(){
 	document.getElementById("searchresults").style.display="none";
-  	document.getElementById("move").style.marginRight="300px";
-  	document.getElementById("side-menu").style.width="300px";
+  	document.getElementById("move").style.marginRight="280px";
+  	document.getElementById("side-menu").style.width="280px";
   	document.getElementById("btn-start").style.display="none";
   	document.getElementById("searchstring").style.display="none";
   	document.getElementById("searchbtn").style.display="none";
