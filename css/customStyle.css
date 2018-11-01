@@ -50,6 +50,7 @@
 .side-nav div.header {
     margin: 0 0 0 0;
     text-decoration: none;
+    background-color: rgba(242,242,242);
 }      
 
 .side-nav .btn-close {
