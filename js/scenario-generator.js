@@ -291,7 +291,7 @@ function chooseAddr(lat, lng) {
     var newlocation = ol.proj.transform([lng,lat], 'EPSG:4326', 'EPSG:3857');
     var view = map.getView();
     view.setCenter(newlocation);
-    view.setZoom(16);
+	view.setZoom(16);
 }
 
 
@@ -389,7 +389,7 @@ $('#btn-generate').on('click', function() {
 	if (scenarioDuration ==""){scenarioDuration="3600"};
 	var polygons = document.getElementById("add-polygons").checked;
 	var publicTransport = document.getElementById("public-transport").checked;
-	var leftHand = document.getElementById("left-hand").checked;
+	var leftHand = document.getElementById("leftHand").checked;
 
 
 	var query = ("?1="+left+"&2="+down+"&3="+right+"&4="+up+"&5="+carFactor+"&6="+carCount+"&7="
