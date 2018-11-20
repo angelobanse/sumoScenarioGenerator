@@ -385,10 +385,10 @@ $('#btn-generate').on('click', function() {
 	if (shipFactor ==""){shipFactor="0"};
 	var shipCount = document.getElementById("shipCount").value;
 	if (shipCount ==""){shipCount="0"};
-	var scenarioDuration = document.getElementById("scenario-duration").value;
+	var scenarioDuration = document.getElementById("duration").value;
 	if (scenarioDuration ==""){scenarioDuration="3600"};
-	var polygons = document.getElementById("add-polygons").checked;
-	var publicTransport = document.getElementById("public-transport").checked;
+	var polygons = document.getElementById("polygons").checked;
+	var publicTransport = document.getElementById("publicTransport").checked;
 	var leftHand = document.getElementById("leftHand").checked;
 
 
