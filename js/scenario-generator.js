@@ -142,7 +142,7 @@ draw.on('drawend', function(event) {
  	$('#collapseSelectedArea').html('<i class="fas fa-arrows-alt-h"></i> Longitude<dd>' + topLeftLon  + ' - ' + botRightLon  + ' </dd>' + 
 				      '<i class="fas fa-arrows-alt-v"></i> Latitude<dd>' + topLeftLat  + ' - ' + botRightLat + ' </dd>');
 
-	$('#btn-generate').prop('disabled', false);
+	$('#export-button').prop('disabled', false);
 	
 	document.getElementById("select-area-help").style.display="none";
 
@@ -178,7 +178,7 @@ $('#btn-start-selection').on('click', function() {
 		$("#btn-boundaries").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		$("#btn-start-selection").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		map.removeInteraction(draw);
-		$('#btn-generate').prop('disabled', true);
+		$('#export-button').prop('disabled', true);
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
@@ -196,7 +196,7 @@ $('#btn-start-selection').on('click', function() {
 		$("#btn-start-selection").removeClass("btn btn-outline-secondary").addClass("btn btn-secondary");
 		$("#btn-hand-default").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		$("#btn-boundaries").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
-		$('#btn-generate').prop('disabled', true);
+		$('#export-button').prop('disabled', true);
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
@@ -215,7 +215,7 @@ $('#btn-start-selection').on('click', function() {
 		$("#btn-start-selection").removeClass("btn btn-secondary").addClass("btn btn-outline-secondary");
 		vectorsource.clear(); 
 		map.removeInteraction(draw);
-		$('#btn-generate').prop('disabled', true);
+		$('#export-button').prop('disabled', true);
 		document.getElementById("select-area-help").style.display="none";
 		document.getElementById("collapseSelectedArea").style.display="none";
 		document.getElementById("reset-selection").style.display="none";
@@ -231,7 +231,7 @@ $('#btn-start-selection').on('click', function() {
 	//map.removeInteraction(draw);
 	map.addInteraction(draw);
 	document.getElementById("reset-selection").style.display="none";
-	$('#btn-generate').prop('disabled', true);
+	$('#export-button').prop('disabled', true);
 	});
 
 // Get current location
@@ -338,7 +338,7 @@ $('#btn-enable-trains').on('click',function(event){ vehicleAdded(event, this, 't
 $('#btn-enable-ships').on('click',function(event){ vehicleAdded(event, this, 'ship', 40, 2, '#ship-pill'); });
 
 // When you click on the GENERATE button
-$('#btn-generate').on('click', function() {
+$('#export-button').on('click', function() {
 	closeSideMenu();
 	$('#loading').modal('show');	
 	var left = bbox[0];
