@@ -5,18 +5,25 @@
     border-color:#6c757d
 }
 
+.navbar {
+    z-index: 1;
+}
+
 .map {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: -1;
+    margin-top: 72px;
+    z-index: 0;
 }
 
 .searchresults {
     background-color:rgba(255, 255, 255, 0.85);
     border-radius: 0px 0px 10px 10px;
+    z-index: 2;
+    position: relative;
 }
 
 /* SIDE MENU */
