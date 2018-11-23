@@ -124,7 +124,7 @@ else:
 ## compile this script and generate a .pyc file for faster execution
 # py_compile.compile('script.py')
 
-## NEED TEST
+## TEST NEEDED
 #finalURL = "final.php" + "?id=" + sessionID
 #print "Content-type: text/html\n\n"
 #print ("<script>window.location = '" + finalURL + "'</script>")

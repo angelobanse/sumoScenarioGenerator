@@ -8,7 +8,8 @@ import os
 epoch_now = time.time() # current time
 
 # PATH where the ZIP files are being stored
-directory = os.getcwd() + "/cgi-bin/" # look carefully the path
+directory = os.path.join(os.getcwd() , "cgi-bin/") # look carefully the path
+# os.getcwd() gives you the path where this script (deleter.py) is located
 
 desired_time_limit = epoch_now - (24 * 3600) # desired_time_limit is epoch_now minus 24 hours (in seconds)
 os.chdir(directory)
