@@ -391,6 +391,13 @@ $('#export-button').on('click', function() {
 	var publicTransport = document.getElementById("publicTransport").checked;
 	var leftHand = document.getElementById("leftHand").checked;
 
+	var data = {
+		poly: polygons,
+		duration: scenarioDuration,
+		publicTransport: publicTransport,
+		leftHand: leftHand,
+		coords: [bbox[1],bbox[0],bbox[3],bbox[2]]
+	};
 
 	var query = ("?1="+left+"&2="+down+"&3="+right+"&4="+up+"&5="+carFactor+"&6="+carCount+"&7="
 	+truckFactor+"&8="+truckCount+"&9="+busFactor+"&10="+busCount+"&11="+motorcycleFactor+"&12="
