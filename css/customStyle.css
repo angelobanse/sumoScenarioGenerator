@@ -25,6 +25,18 @@ canvas {
     left: 0;
 }
 
+#status {
+    display:none;
+}
+
+#status > div {
+    width: 0;
+    height: 40px;
+    background: #157ffb;
+    border-radius: 2px;
+    transition: 0.5s width;
+}
+
 #searchresults {
     background-color:rgba(255, 255, 255, 0.85);
     border-radius: 0px 0px 10px 10px;
