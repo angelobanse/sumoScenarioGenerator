@@ -1,9 +1,6 @@
-
-// Bootstrap components
 $(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-	$('[data-toggle="popover"]').popover(); 
-  });
+// Bootstrap components
+
 
 function openSideMenu(){
 	document.getElementById("searchresults").style.display="none";
@@ -337,9 +334,75 @@ $('#btn-enable-urbantrains').on('click',function(event){ vehicleAdded(event, thi
 $('#btn-enable-trains').on('click',function(event){ vehicleAdded(event, this, 'train', 40, 2, '#train-pill'); });
 $('#btn-enable-ships').on('click',function(event){ vehicleAdded(event, this, 'ship', 40, 2, '#ship-pill'); });
 
-// When you click on the GENERATE button
-$('#export-button').on('click', function() {
-	closeSideMenu();
+
+var socket;
+    var totalSteps;
+    var currentStep;
+    var presentedErrorLog = false;
+
+    /**
+     * @function
+     * connects to the socket, when it fails it tries it again after five seconds
+     */
+    function connectSocket(){
+        var address = location.hostname;
+        // when accessing via file, location.hostname is an empty string, so guess that the server is on localhost
+        if(!address)
+            address = "localhost";
+        try {
+            socket = new WebSocket("ws://" + address + ":" + PORT);
+        } catch(e){
+            // connection failed, wait five seconds, then try again
+	    setTimeout(connectSocket, 5000);
+            return;
+        }
+
+	socket.onerror = function(error) {
+	    if (presentedErrorLog == false) {
+		window.alert("Socket connection failed. Please open the OSM WebWizard by using osmWebWizard.py or the link in your start menu.");
+		presentedErrorLog = true;
+	    }
+	};
+	
+        // whenever the socket closes (e.g. restart) try to reconnect
+        socket.addEventListener("close", connectSocket);
+        socket.addEventListener("message", function(evt){
+            var message = evt.data;
+            // get the first space
+            var index = message.indexOf(" ");
+            // split the message type from the message
+            var type = message.substr(0, index);
+            message = message.substr(index + 1);
+
+            if(type === "zip"){
+                showZip(message);
+            } else if(type === "report"){
+                currentStep++;
+                elem("#status > span").textContent = message;
+                elem("#status > div").style.width = (100 * currentStep / totalSteps) + "%";
+
+                if(currentStep === totalSteps){
+                    setTimeout(function(){
+                        elem("#status").style.display = "none";
+                    elem("#export-button").style.display = "block";
+                    }, 2000);
+                }
+            } else if(type === "steps"){
+                totalSteps = parseInt(message);
+                currentStep = 0;
+            }
+        });
+    }
+
+    connectSocket();
+
+    /**
+     * @function
+     * generate and send the data to the websocket
+     */
+    function startBuild(){
+       
+		closeSideMenu();
 	$('#loading').modal('show');	
 	var left = bbox[0];
 	var down = bbox[1];
@@ -396,15 +459,38 @@ $('#export-button').on('click', function() {
 		duration: scenarioDuration,
 		publicTransport: publicTransport,
 		leftHand: leftHand,
-		coords: [bbox[1],bbox[0],bbox[3],bbox[2]]
+		coords: [bbox[1],bbox[0],bbox[3],bbox[2]],
+		vehicles: {}
 	};
 
-	var query = ("?1="+left+"&2="+down+"&3="+right+"&4="+up+"&5="+carFactor+"&6="+carCount+"&7="
-	+truckFactor+"&8="+truckCount+"&9="+busFactor+"&10="+busCount+"&11="+motorcycleFactor+"&12="
-	+motorcycleCount+"&13="+bicycleFactor+"&14="+bicycleCount+"&15="+pedestrianFactor
-	+"&16="+pedestrianCount+"&17="+tramFactor+"&18="+tramCount+"&19="+urbantrainFactor
-	+"&20="+urbantrainCount+"&21="+trainFactor+"&22="+trainCount+"&23="+shipFactor+"&24="+shipCount
-	+"&25="+scenarioDuration+"&26="+polygons+"&27="+publicTransport+"&28="+leftHand);
 
-	window.location.replace("script.php" + query);
+        try {
+            socket.send(JSON.stringify(data));
+        } catch(e){
+            return;
+        }
+
+		elem("#status").style.display = "block";
+        elem("#export-button").style.display = "none";
+    }
+
+    elem("#export-button").on("click", startBuild);
+
+	function showZip(uri){
+        var url = "data:application/zip;base64," + uri;
+
+        // using a temporarily link to trigger the download dialog
+        var link = elem("<a>", {
+            download: "osm.zip",
+            href: url,
+            target: "_blank"
+        });
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+	}
+	
 });
+	
+
